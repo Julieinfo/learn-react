@@ -2,45 +2,54 @@ import { useState } from 'react'
 import CarteProduit from './CarteProduit'
 
 function App() {
-  const [quantite1, setQuantite1] = useState(0);
-  const [quantite2, setQuantite2] = useState(0);
+  const [produits, setProduits] = useState([
+    {
+      id: 1,
+      nom: 'Montre connectée',
+      description: 'Mon premier produit',
+      prix: 160,
+      quantite: 0
+    },
+    {
+      id: 2,
+      nom: 'Ecouteur bluetooth',
+      description: 'Mon deuxième produit',
+      prix: 80,
+      quantite: 0
+    }
+  ]);
 
-  const produit1 = {
-    nom: 'Montre connectée',
-    description: 'Mon premier produit',
-    prix: 160
+  // Fonction pour augmenter la quantité d'un produit par son id
+  const ajouterAuPanier = (id) => {
+    setProduits(produits.map(produit => {
+      if (produit.id === id) {
+        return { ...produit, quantite: produit.quantite + 1 };
+      }
+      return produit;
+    }));
   };
 
-  const produit2 = {
-    nom: 'Ecouteur bluetooth',
-    description: 'Mon deuxième produit',
-    prix: 80
-  };
-
-  // Calcul du prix total du panier
-  const totalPanier = (quantite1 * produit1.prix) + (quantite2 * produit2.prix);
+  // Calcul du total du panier dynamiquement
+  const totalPanier = produits.reduce((acc, produit) => {
+    return acc + (produit.prix * produit.quantite);
+  }, 0);
 
   return (
     <div>
       <h1>Mon apprentissage React</h1>
       
       <h2>Total du panier : {totalPanier} €</h2>
-      
-      <CarteProduit 
-        nom={produit1.nom} 
-        description={produit1.description} 
-        prix={produit1.prix} 
-        quantite={quantite1}
-        onAjouter={() => setQuantite1(quantite1 + 1)}
-      />
-      <br />
-      <CarteProduit 
-        nom={produit2.nom} 
-        description={produit2.description} 
-        prix={produit2.prix} 
-        quantite={quantite2}
-        onAjouter={() => setQuantite2(quantite2 + 1)}
-      />
+
+      {produits.map((produit) => (
+        <CarteProduit 
+          key={produit.id}
+          nom={produit.nom}
+          description={produit.description}
+          prix={produit.prix}
+          quantite={produit.quantite}
+          onAjouter={() => ajouterAuPanier(produit.id)}
+        />
+      ))}
     </div>
   );
 }
