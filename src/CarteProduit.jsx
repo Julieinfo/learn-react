@@ -1,7 +1,14 @@
 import React from 'react';
 import Conteneur from './Conteneur'; // On l'importe dans CarteProduit
 
-function CarteProduit({ nom, description, prix, quantite, onAjouter, onDiminuer }) {
+function CarteProduit({
+    nom = 'Produit sans nom',
+    description = 'Aucune description disponible.',
+    prix = 0, 
+    quantite = 0,
+    onAjouter,
+    onDiminuer 
+}) {
   return (
     <Conteneur>
       <h2>{nom}</h2>

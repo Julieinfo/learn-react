@@ -16,6 +16,11 @@ function App() {
       description: 'Mon deuxième produit',
       prix: 80,
       quantite: 0
+    },
+    {
+      id: 3,
+      nom: 'Casque gaming',
+      quantite: 0
     }
   ]);
 
@@ -44,7 +49,8 @@ function App() {
   };
 
   const totalPanier = produits.reduce((acc, produit) => {
-    return acc + (produit.prix * produit.quantite);
+    const prix = produit.prix || 0; // Si le prix n'existe pas, on prend 0
+    return acc + (prix * produit.quantite);
   }, 0);
 
   return (
