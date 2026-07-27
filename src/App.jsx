@@ -19,7 +19,6 @@ function App() {
     }
   ]);
 
-  // Fonction pour augmenter la quantité d'un produit par son id
   const ajouterAuPanier = (id) => {
     setProduits(produits.map(produit => {
       if (produit.id === id) {
@@ -29,7 +28,21 @@ function App() {
     }));
   };
 
-  // Calcul du total du panier dynamiquement
+  // Diminuer la quantité d'un produit (sans descendre en dessous de 0)
+  const diminuerAuPanier = (id) => {
+    setProduits(produits.map(produit => {
+      if (produit.id === id && produit.quantite > 0) {
+        return { ...produit, quantite: produit.quantite - 1 };
+      }
+      return produit;
+    }));
+  };
+
+  // Remettre toutes les quantités à 0
+  const viderPanier = () => {
+    setProduits(produits.map(produit => ({ ...produit, quantite: 0 })));
+  };
+
   const totalPanier = produits.reduce((acc, produit) => {
     return acc + (produit.prix * produit.quantite);
   }, 0);
@@ -39,6 +52,11 @@ function App() {
       <h1>Mon apprentissage React</h1>
       
       <h2>Total du panier : {totalPanier} €</h2>
+      <button onClick={viderPanier} disabled={totalPanier === 0}>
+        Vider le panier
+      </button>
+
+      <br /><br />
 
       {produits.map((produit) => (
         <CarteProduit 
@@ -48,6 +66,7 @@ function App() {
           prix={produit.prix}
           quantite={produit.quantite}
           onAjouter={() => ajouterAuPanier(produit.id)}
+          onDiminuer={() => diminuerAuPanier(produit.id)}
         />
       ))}
     </div>
