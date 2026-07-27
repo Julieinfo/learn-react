@@ -18,6 +18,7 @@ function App() {
     <div>
       <h1>Mon apprentissage React</h1>
       <CarteProduit nom={produit1.nom} description={produit1.description} prix={produit1.prix} />
+      <br />
       <CarteProduit nom={produit2.nom} description={produit2.description} prix={produit2.prix} />
     </div>
   )
