@@ -27,6 +27,7 @@
 - 🗑️ Bouton de réinitialisation pour vider le panier en un clic
 - 📦 Composant conteneur réutilisable (`Conteneur.jsx`) basé sur la prop `children`
 - 🧯 Valeurs par défaut des props (*Default Props*) pour sécuriser l'affichage même en cas de données manquantes
+- ❤️ Système de favoris ("Coup de cœur") par produit, avec state 100 % local (`useState`)
 
 ---
 
@@ -58,13 +59,14 @@ learn-react/
 | 🔁 **`.map()`** | Générer dynamiquement une liste de composants à partir d'un tableau, avec une prop `key` unique et stable |
 | ➕ **`.reduce()`** | Calculer une valeur agrégée (le total du panier) à partir d'un tableau, en sécurisant le calcul contre les données manquantes |
 | 🧯 **Default Props** | Définir des valeurs par défaut via la déstructuration pour éviter les bugs d'affichage |
+| 🏠 **State Local** | Isoler un état interne à un composant (`estFavori`) sans le remonter au parent si personne d'autre n'en a besoin |
 
 ---
 
 ## 🗺️ Roadmap / Progression des cours
 
 - [x] **Jour 1** : Fondamentaux (Props, State, Composition, `children`)
-- [ ] **Jour 2** : *À venir*
+- [x] **Jour 2** : State Local & indépendance des composants (Favoris ❤️/🤍, `useState` local dans `CarteProduit.jsx`)
 - [ ] **Jour 3** : *À venir*
 - [ ] **Jour 4** : *À venir*
 - [ ] **Jour 5** : *À venir*
