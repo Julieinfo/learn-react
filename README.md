@@ -28,6 +28,8 @@
 - 📦 Composant conteneur réutilisable (`Conteneur.jsx`) basé sur la prop `children`
 - 🧯 Valeurs par défaut des props (*Default Props*) pour sécuriser l'affichage même en cas de données manquantes
 - ❤️ Système de favoris ("Coup de cœur") par produit, avec state 100 % local (`useState`)
+- 🔍 Filtres dynamiques ("Tous les produits" / "Uniquement le panier") via `.filter()`
+- 👁️ Rendu conditionnel : message "panier vide" et bloc total masqué/affiché selon l'état
 
 ---
 
@@ -60,6 +62,8 @@ learn-react/
 | ➕ **`.reduce()`** | Calculer une valeur agrégée (le total du panier) à partir d'un tableau, en sécurisant le calcul contre les données manquantes |
 | 🧯 **Default Props** | Définir des valeurs par défaut via la déstructuration pour éviter les bugs d'affichage |
 | 🏠 **State Local** | Isoler un état interne à un composant (`estFavori`) sans le remonter au parent si personne d'autre n'en a besoin |
+| 🔎 **`.filter()`** | Créer un sous-tableau dérivé selon une condition, avant de le boucler avec `.map()` |
+| 👁️ **Rendu conditionnel (`? :` et `&&`)** | Choisir entre deux affichages (ternaire) ou masquer un bloc entier selon une condition (`&&`) |
 
 ---
 
@@ -67,7 +71,7 @@ learn-react/
 
 - [x] **Jour 1** : Fondamentaux (Props, State, Composition, `children`)
 - [x] **Jour 2** : State Local & indépendance des composants (Favoris ❤️/🤍, `useState` local dans `CarteProduit.jsx`)
-- [ ] **Jour 3** : *À venir*
+- [x] **Jour 3** : Listes filtrées & rendu conditionnel (`.filter()`, ternaire, `&&`)
 - [ ] **Jour 4** : *À venir*
 - [ ] **Jour 5** : *À venir*
 
