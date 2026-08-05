@@ -48,7 +48,7 @@ function CarteProduit({
     <Conteneur>
       <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
         {/* Interpolation d'une prop dans le JSX grâce aux accolades. */}
-        <h2>{nom}</h2>
+        <h2 style={{ color: '#333' }}>{nom}</h2>
         {/* Note d'apprentissage : on passe la RÉFÉRENCE de la fonction
             (onClick={toggleFavori}) et non son appel (toggleFavori()), sinon
             elle serait exécutée dès le rendu. */}
