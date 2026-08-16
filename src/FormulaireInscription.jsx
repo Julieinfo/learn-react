@@ -1,89 +1,67 @@
-// ============================================================================
-// 📘 FormulaireInscription.jsx
-// ----------------------------------------------------------------------------
-// 🧠 Note d'apprentissage : ce composant est totalement AUTONOME. Il gère lui-
-// même son ÉTAT LOCAL (la saisie du mot de passe et le message de sécurité
-// affiché) via useState, sans recevoir ni renvoyer aucune prop à son parent
-// (App.jsx). C'est un excellent exemple d'isolation des composants : personne
-// d'autre dans l'application n'a besoin de connaître le contenu du mot de
-// passe, donc cet état n'a aucune raison d'être remonté (Lifting State Up).
-// Il illustre également un EFFET SECONDAIRE (side effect) piloté par
-// useEffect, avec temporisation (debounce) et fonction de nettoyage (cleanup).
-// ============================================================================
+/*
+ * Mémo L3 - FormulaireInscription
+ *
+ * Rôle principal du composant : gérer un formulaire d'inscription en gardant
+ * un état local pour le mot de passe, puis en affichant un feedback immédiat
+ * sur sa sécurité. Dans une architecture React, il s'agit d'un composant
+ * autonome : il reçoit peu ou pas de props, il garde sa logique interne et il
+ * réagit aux événements utilisateur sans dépendre d'un état global.
+ */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
+import useDebounce from './useDebounce';
 
 function FormulaireInscription() {
-  // --------------------------------------------------------------------------
-  // 🏠 ÉTAT LOCAL (useState)
-  // --------------------------------------------------------------------------
-  // Mémo L3 : useState('') déclare une variable d'état initialisée à une
-  // chaîne vide. motDePasse reflète en temps réel la saisie de l'utilisateur
-  // (formulaire CONTRÔLÉ : la valeur de l'input provient TOUJOURS du state,
-  // jamais du DOM seul). messageSecurite est un état DÉRIVÉ de motDePasse,
-  // recalculé de façon réactive dans l'effet ci-dessous.
+  // Note d'apprentissage : useState est le hook fondamental pour stocker un
+  // état local. Ici, motDePasse appartient uniquement à ce composant ; il n'est
+  // pas partagé avec d'autres composants. La mise à jour suit le principe
+  // d'immutabilité du state : on ne modifie pas l'ancien tableau/objet/string en
+  // place, on crée une nouvelle valeur via setMotDePasse.
   const [motDePasse, setMotDePasse] = useState('');
-  const [messageSecurite, setMessageSecurite] = useState('');
 
-  // --------------------------------------------------------------------------
-  // ⚡ EFFET SECONDAIRE (useEffect) — Validation réactive avec DEBOUNCE
-  // --------------------------------------------------------------------------
-  // Mémo L3 : useEffect(fn, [dep]) exécute fn après le rendu, et la ré-exécute
-  // à chaque fois qu'une valeur du TABLEAU DE DÉPENDANCES change. Ici, le
-  // tableau [motDePasse] indique : "relance cet effet dès que motDePasse change".
-  useEffect(() => {
-    // 1. Si le champ est vide, réinitialisation directe (guard clause) :
-    //    on sort immédiatement, aucun besoin de programmer un timer inutile.
-    if (!motDePasse) {
-      setMessageSecurite('');
-      return;
-    }
+  // Mémo L3 : le hook personnalisé useDebounce encapsule un effet secondaire de
+  // temporisation. On attend 300 ms avant de valider la dernière valeur saisie,
+  // ce qui évite des recalculs inutiles à chaque frappe. Cette logique est
+  // utile pour la réactivité et pour le contrôle de la fréquence d'exécution.
+  const motDePasseDebounced = useDebounce(motDePasse, 300);
 
-    // 2. TEMPORISATION (debounce) : au lieu de recalculer le niveau de sécurité
-    //    à CHAQUE frappe (ce qui serait coûteux si le calcul était lourd, par
-    //    ex. un appel API), on attend 300ms d'inactivité avant d'évaluer.
-    //    setTimeout programme cette évaluation différée.
-    const timer = setTimeout(() => {
-      if (motDePasse.length < 6) {
-        setMessageSecurite('Trop court ❌');
-      } else if (motDePasse.length <= 10) {
-        setMessageSecurite('Moyen ⚠️');
-      } else {
-        setMessageSecurite('Fort ✅');
-      }
-    }, 300);
+  // Note d'apprentissage : cette fonction représente la logique métier du
+  // composant. Elle analyse la chaîne de caractères après temporisation et
+  // renvoie un message de sécurité. On utilise ici une série de conditions,
+  // mais on aurait pu écrire la même logique sous forme de ternaires ; dans
+  // un cadre pédagogique, les conditions if/else restent plus lisibles.
+  const getMessageSecurite = () => {
+    if (!motDePasseDebounced) return '';
+    if (motDePasseDebounced.length < 6) return 'Trop court ❌';
+    if (motDePasseDebounced.length <= 10) return 'Moyen ⚠️';
+    return 'Fort ✅';
+  };
 
-    // 3. FONCTION DE NETTOYAGE (cleanup) : React l'exécute AVANT de relancer
-    //    l'effet suivant (donc à chaque nouvelle frappe) et juste avant le
-    //    démontage du composant. clearTimeout(timer) annule ainsi le minuteur
-    //    précédent : seule la DERNIÈRE frappe déclenchera réellement le calcul
-    //    du niveau de sécurité, une fois la saisie stabilisée.
-    return () => clearTimeout(timer);
-  }, [motDePasse]);
-
-  // --------------------------------------------------------------------------
-  // 🎨 RENDU JSX
-  // --------------------------------------------------------------------------
   return (
-    // onSubmit intercepte la soumission native du formulaire HTML et empêche
-    // le rechargement de page (e.preventDefault()) — indispensable dans une SPA.
-    <form onSubmit={(e) => e.preventDefault()} style={{ padding: '20px', maxWidth: '300px' }}>
+    <form onSubmit={(e) => e.preventDefault()}>
+      {/*
+       * Dans le JSX, le label est un élément de formulaire simple. L'input est
+       * contrôlé par React : sa prop value est liée à l'état local motDePasse.
+       * Cela garantit une synchronisation parfaite entre le DOM et le state.
+       * L'événement onChange reçoit un objet événement, puis on met à jour le
+       * state avec la valeur actuelle du champ.
+       */}
       <label style={{ display: 'block', marginBottom: '8px' }}>Mot de passe :</label>
-      {/* Input CONTRÔLÉ : value provient du state motDePasse, et onChange met
-          à jour ce state à chaque frappe (e.target.value), ce qui redéclenche
-          un rendu ET, via le tableau de dépendances, relance l'effet ci-dessus. */}
-      <input 
-        type="password" 
-        value={motDePasse} 
-        onChange={(e) => setMotDePasse(e.target.value)} 
-        style={{ width: '100%', padding: '8px', borderRadius: '4px', border: '1px solid #ccc' }}
+      <input
+        type="password"
+        value={motDePasse}
+        onChange={(e) => setMotDePasse(e.target.value)}
       />
-      {/* Court-circuit logique && : ce paragraphe n'est rendu QUE si
-          messageSecurite est une chaîne non vide (donc truthy). Tant que le
-          debounce n'a pas abouti ou que le champ est vide, rien ne s'affiche. */}
-      {messageSecurite && (
+
+      {/*
+       * Rendu conditionnel : le message n'apparaît que si la valeur temporisée
+       * existe. Le court-circuit logique && est ici particulièrement adapté :
+       * tant que motDePasseDebounced est falsy, React ne rend pas le bloc.
+       * C'est un bon exemple de réactivité conditionnelle dans JSX.
+       */}
+      {motDePasseDebounced && (
         <p style={{ marginTop: '8px', fontWeight: 'bold' }}>
-          Sécurité : {messageSecurite}
+          Sécurité : {getMessageSecurite()}
         </p>
       )}
     </form>
