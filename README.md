@@ -30,6 +30,8 @@
 - ❤️ Système de favoris ("Coup de cœur") par produit, avec state 100 % local (`useState`)
 - 🔍 Filtres dynamiques ("Tous les produits" / "Uniquement le panier") via `.filter()`
 - 👁️ Rendu conditionnel : message "panier vide" et bloc total masqué/affiché selon l'état
+- 🔒 Formulaire d'inscription avec validation dynamique du mot de passe (`useEffect`)
+- ⏱️ Debounce sur la validation (email/mot de passe) via un Custom Hook `useDebounce`
 
 ---
 
@@ -41,6 +43,8 @@ learn-react/
 │   ├── App.jsx           # Composant racine : state global + logique métier du panier
 │   ├── CarteProduit.jsx  # Composant réutilisable : affichage d'un produit
 │   ├── Conteneur.jsx     # Composant wrapper : structure via la prop `children`
+│   ├── FormulaireInscription.jsx # Composant : formulaire d'inscription avec validation
+│   ├── useDebounce.jsx   # Hook personnalisé : temporisation des valeurs saisies
 │   ├── main.jsx          # Point d'entrée de l'application
 │   └── index.css         # Styles globaux
 ├── public/
@@ -64,6 +68,11 @@ learn-react/
 | 🏠 **State Local** | Isoler un état interne à un composant (`estFavori`) sans le remonter au parent si personne d'autre n'en a besoin |
 | 🔎 **`.filter()`** | Créer un sous-tableau dérivé selon une condition, avant de le boucler avec `.map()` |
 | 👁️ **Rendu conditionnel (`? :` et `&&`)** | Choisir entre deux affichages (ternaire) ou masquer un bloc entier selon une condition (`&&`) |
+| 🚪 **Guard Clause** | Sortie précoce d'une fonction/composant pour simplifier la lecture |
+| ⚡ **`useEffect`** | Gérer les effets secondaires, le tableau de dépendances et le cleanup |
+| 🛑 **`AbortController`** | Annuler une requête `fetch` pour éviter fuites mémoire et race conditions |
+| ⏱️ **Debounce** | Temporiser une action coûteuse via `setTimeout`/`clearTimeout` en cleanup |
+| 🧩 **Custom Hooks** | Extraire une logique réutilisable (`useDebounce`) hors des composants |
 
 ---
 
@@ -72,8 +81,13 @@ learn-react/
 - [x] **Jour 1** : Fondamentaux (Props, State, Composition, `children`)
 - [x] **Jour 2** : State Local & indépendance des composants (Favoris ❤️/🤍, `useState` local dans `CarteProduit.jsx`)
 - [x] **Jour 3** : Listes filtrées & rendu conditionnel (`.filter()`, ternaire, `&&`)
-- [ ] **Jour 4** : *À venir*
-- [ ] **Jour 5** : *À venir*
+- [x] **Jour 4** : Analyse de code réel (Guard Clause, handler unifié `[name]: value`)
+- [x] **Jour 5** : Auto-évaluation (Feynman + Quiz) + Projet intégrateur (Gestionnaire de tâches)
+- [x] **Semaine 2 — Lundi** : `useEffect`, cycle de vie, fonction de nettoyage
+- [x] **Semaine 2 — Mardi** : `fetch` + `AbortController` (memory leaks, race conditions)
+- [x] **Semaine 2 — Mercredi** : Validation dynamique + debounce
+- [x] **Semaine 2 — Jeudi** : Custom Hooks (`useDebounce`)
+- [ ] **Semaine 2 — Vendredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
