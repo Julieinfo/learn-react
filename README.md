@@ -80,16 +80,16 @@ learn-react/
 
 ## 🗺️ Roadmap / Progression des cours
 
-- [x] **Jour 1** : Fondamentaux (Props, State, Composition, `children`)
-- [x] **Jour 2** : State Local & indépendance des composants (Favoris ❤️/🤍, `useState` local dans `CarteProduit.jsx`)
-- [x] **Jour 3** : Listes filtrées & rendu conditionnel (`.filter()`, ternaire, `&&`)
-- [x] **Jour 4** : Analyse de code réel (Guard Clause, handler unifié `[name]: value`)
-- [x] **Jour 5** : Auto-évaluation (Feynman + Quiz) + Projet intégrateur (Gestionnaire de tâches)
-- [x] **Semaine 2 — Lundi** : `useEffect`, cycle de vie, fonction de nettoyage
-- [x] **Semaine 2 — Mardi** : `fetch` + `AbortController` (memory leaks, race conditions)
-- [x] **Semaine 2 — Mercredi** : Validation dynamique + debounce
-- [x] **Semaine 2 — Jeudi** : Custom Hooks (`useDebounce`)
-- [ ] **Semaine 2 — Vendredi** : *À venir*
+- [x] **Semaine 1 - Lundi** : Fondamentaux (Props, State, Composition, `children`)
+- [x] **Semaine 1 - Mardi** : State Local & indépendance des composants (Favoris ❤️/🤍, `useState` local dans `CarteProduit.jsx`)
+- [x] **Semaine 1 - Mercredi** : Listes filtrées & rendu conditionnel (`.filter()`, ternaire, `&&`)
+- [x] **Semaine 1 - Jeudi** : Analyse de code réel (Guard Clause, handler unifié `[name]: value`)
+- [x] **Semaine 1 - Vendredi** : Auto-évaluation (Feynman + Quiz) + Projet intégrateur (Gestionnaire de tâches)
+- [x] **Semaine 2 - Lundi** : `useEffect`, cycle de vie, fonction de nettoyage
+- [x] **Semaine 2 - Mardi** : `fetch` + `AbortController` (memory leaks, race conditions)
+- [x] **Semaine 2 - Mercredi** : Validation dynamique + debounce
+- [x] **Semaine 2 - Jeudi** : Custom Hooks (`useDebounce`)
+- [x] **Semaine 2 - Vendredi** : Projet intégrateur (Formulaire d'inscription avec validation et debounce)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
