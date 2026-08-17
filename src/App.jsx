@@ -11,8 +11,9 @@
 // ============================================================================
 
 import { useState } from 'react';
-import CarteProduit from './CarteProduit';
-import FormulaireInscription from './FormulaireInscription';
+import CarteProduit from './components/CarteProduit';
+import FormulaireInscription from './components/FormulaireInscription';
+import Conteneur from './components/Conteneur';
 
 function App() {
   // --------------------------------------------------------------------------
@@ -87,7 +88,7 @@ function App() {
   // 🎨 RENDU JSX
   // --------------------------------------------------------------------------
   return (
-    <div style={{ maxWidth: '800px', margin: '0 auto', padding: '20px', fontFamily: 'sans-serif' }}>
+    <Conteneur>
       <h1 style={{ textAlign: 'center', marginBottom: '30px', color: '#333' }}>
         🛒 Application Demo React
       </h1>
@@ -234,7 +235,7 @@ function App() {
           </div>
         )}
       </div>
-    </div>
+    </Conteneur>
   );
 }
 

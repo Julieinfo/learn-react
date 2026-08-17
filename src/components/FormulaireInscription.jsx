@@ -9,7 +9,7 @@
  */
 
 import React, { useState } from 'react';
-import useDebounce from './useDebounce';
+import useDebounce from '../hooks/useDebounce';
 
 function FormulaireInscription() {
   // Note d'apprentissage : useState est le hook fondamental pour stocker un
