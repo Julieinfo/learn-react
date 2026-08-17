@@ -40,11 +40,13 @@
 ```
 learn-react/
 ├── src/
+│   ├── components/       # Composants UI réutilisables
+│   │   ├── CarteProduit.jsx          # Composant : affichage d'un produit
+│   │   ├── Conteneur.jsx             # Composant wrapper : structure via la prop children
+│   │   └── FormulaireInscription.jsx # Composant : formulaire d'inscription avec validation
+│   ├── hooks/            # Hooks React personnalisés (Custom Hooks)
+│   │   └── useDebounce.jsx           # Hook personnalisé : temporisation des valeurs saisies
 │   ├── App.jsx           # Composant racine : state global + logique métier du panier
-│   ├── CarteProduit.jsx  # Composant réutilisable : affichage d'un produit
-│   ├── Conteneur.jsx     # Composant wrapper : structure via la prop `children`
-│   ├── FormulaireInscription.jsx # Composant : formulaire d'inscription avec validation
-│   ├── useDebounce.jsx   # Hook personnalisé : temporisation des valeurs saisies
 │   ├── main.jsx          # Point d'entrée de l'application
 │   └── index.css         # Styles globaux
 ├── public/
