@@ -14,8 +14,18 @@ import { useState } from 'react';
 import CarteProduit from './components/CarteProduit';
 import FormulaireInscription from './components/FormulaireInscription';
 import Conteneur from './components/Conteneur';
+import {useTheme} from './context/ThemeContext';
+import BoutonTheme from './components/BoutonTheme';
 
 function App() {
+  const { theme } = useTheme();
+  const appStyle = {
+    backgroundColor: theme === 'light' ? '#ffffff' : '#1e1e1e',
+    color: theme === 'light' ? '#000000' : '#ffffff',
+    minHeight: '100vh',
+    padding: '20px',
+    transition: 'all 0.3s ease'
+  };
   // --------------------------------------------------------------------------
   // 🗂️ ÉTAT GLOBAL (State)
   // --------------------------------------------------------------------------
@@ -88,155 +98,161 @@ function App() {
   // 🎨 RENDU JSX
   // --------------------------------------------------------------------------
   return (
-    <Conteneur>
-      <h1 style={{ textAlign: 'center', marginBottom: '30px', color: '#333' }}>
-        🛒 Application Demo React
-      </h1>
+    <div style={appStyle}>
+      <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+        <BoutonTheme />
+      </header>
 
-      {/* --------------------------------------------------------------------
-          Section 1 : Formulaire de validation dynamique
-          Note d'apprentissage : FormulaireInscription est intégré ici SANS
-          aucune prop. Il gère intégralement son propre état LOCAL (mot de
-          passe saisi + message de sécurité). App.jsx n'a aucune connaissance
-          ni aucun contrôle sur cet état interne : c'est une bonne illustration
-          de l'isolation des composants (state local vs state global remonté).
-      -------------------------------------------------------------------- */}
-      <div style={{
-        backgroundColor: '#f8f9fa',
-        border: '1px solid #e9ecef',
-        borderRadius: '8px',
-        padding: '20px',
-        marginBottom: '30px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-      }}>
-        <h2 style={{ marginTop: 0, fontSize: '1.2rem', color: '#495057' }}>
-          🔒 Inscription & Validation du Mot de Passe
-        </h2>
-        {/* Intégration simple du composant autonome */}
-        <FormulaireInscription />
-      </div>
+      <Conteneur>
+        <h1 style={{ textAlign: 'center', marginBottom: '30px', color: '#333' }}>
+          🛒 Application Demo React
+        </h1>
 
-      {/* --------------------------------------------------------------------
-          Section 2 : Boutique & Panier
-          Ici, en revanche, l'état (produits, filtreActif) est bien GLOBAL :
-          il est déclaré dans App.jsx puis PROPAGÉ vers CarteProduit via props.
-      -------------------------------------------------------------------- */}
-      <div style={{
-        backgroundColor: '#fff',
-        border: '1px solid #dee2e6',
-        borderRadius: '8px',
-        padding: '20px',
-        boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
-      }}>
-        <h2 style={{ marginTop: 0, fontSize: '1.2rem', color: '#495057' }}>
-          🛍️ Catalogue Produits
-        </h2>
-
-        {/* Boutons de Filtre
-            Note d'apprentissage : chaque bouton appelle setFiltreActif au clic,
-            ce qui déclenche un re-render. Le style de fond/texte est calculé
-            dynamiquement via un opérateur ternaire comparant filtreActif à la
-            valeur du bouton, pour surligner visuellement le filtre actif. */}
-        <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
-          <button 
-            onClick={() => setFiltreActif('TOUS')}
-            style={{
-              padding: '8px 16px',
-              borderRadius: '4px',
-              border: 'none',
-              backgroundColor: filtreActif === 'TOUS' ? '#007bff' : '#e9ecef',
-              color: filtreActif === 'TOUS' ? '#fff' : '#333',
-              cursor: 'pointer'
-            }}
-          >
-            Tous les produits
-          </button>
-          
-          <button 
-            onClick={() => setFiltreActif('PANIER')}
-            style={{
-              padding: '8px 16px',
-              borderRadius: '4px',
-              border: 'none',
-              backgroundColor: filtreActif === 'PANIER' ? '#007bff' : '#e9ecef',
-              color: filtreActif === 'PANIER' ? '#fff' : '#333',
-              cursor: 'pointer'
-            }}
-          >
-            {/* .filter().length recalcule à la volée le nombre de produits déjà
-                dans le panier, sans passer par un state dédié (donnée dérivée) */}
-            Uniquement le panier ({produits.filter(p => p.quantite > 0).length})
-          </button>
+        {/* --------------------------------------------------------------------
+            Section 1 : Formulaire de validation dynamique
+            Note d'apprentissage : FormulaireInscription est intégré ici SANS
+            aucune prop. Il gère intégralement son propre état LOCAL (mot de
+            passe saisi + message de sécurité). App.jsx n'a aucune connaissance
+            ni aucun contrôle sur cet état interne : c'est une bonne illustration
+            de l'isolation des composants (state local vs state global remonté).
+        -------------------------------------------------------------------- */}
+        <div style={{
+          backgroundColor: '#f8f9fa',
+          border: '1px solid #e9ecef',
+          borderRadius: '8px',
+          padding: '20px',
+          marginBottom: '30px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+        }}>
+          <h2 style={{ marginTop: 0, fontSize: '1.2rem', color: '#495057' }}>
+            🔒 Inscription & Validation du Mot de Passe
+          </h2>
+          {/* Intégration simple du composant autonome */}
+          <FormulaireInscription />
         </div>
 
-        {/* Rendu Conditionnel de la Liste
-            Mémo L3 : opérateur ternaire (condition ? A : B) — on choisit ici
-            entre DEUX rendus mutuellement exclusifs : un message "liste vide"
-            ou la grille de cartes produits. On boucle bien sur produitsFiltres
-            (le tableau DÉRIVÉ), jamais sur produits (le tableau source), sinon
-            le filtre n'aurait aucun effet visible à l'écran. */}
-        {produitsFiltres.length === 0 ? (
-          <p style={{ fontStyle: 'italic', color: '#6c757d', textAlign: 'center', margin: '30px 0' }}>
-            🛒 Aucun produit à afficher dans cette vue.
-          </p>
-        ) : (
-          <div style={{ display: 'grid', gap: '15px' }}>
-            {/* .map() transforme chaque produit du tableau filtré en un composant
-                CarteProduit. La prop key (produit.id, identifiant stable) est
-                indispensable pour que React puisse suivre chaque élément lors
-                des réconciliations du DOM virtuel.
-                Les callbacks onAjouter/onDiminuer illustrent le pattern
-                "data down, actions up" : la donnée descend en props, l'action
-                utilisateur remonte vers les handlers définis plus haut. */}
-            {produitsFiltres.map((produit) => (
-              <CarteProduit
-                key={produit.id}
-                nom={produit.nom}
-                description={produit.description}
-                prix={produit.prix}
-                quantite={produit.quantite}
-                onAjouter={() => ajouterQuantite(produit.id)}
-                onDiminuer={() => diminuerQuantite(produit.id)}
-              />
-            ))}
-          </div>
-        )}
+        {/* --------------------------------------------------------------------
+            Section 2 : Boutique & Panier
+            Ici, en revanche, l'état (produits, filtreActif) est bien GLOBAL :
+            il est déclaré dans App.jsx puis PROPAGÉ vers CarteProduit via props.
+        -------------------------------------------------------------------- */}
+        <div style={{
+          backgroundColor: '#fff',
+          border: '1px solid #dee2e6',
+          borderRadius: '8px',
+          padding: '20px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+        }}>
+          <h2 style={{ marginTop: 0, fontSize: '1.2rem', color: '#495057' }}>
+            🛍️ Catalogue Produits
+          </h2>
 
-        {/* Total du Panier
-            Mémo L3 : court-circuit logique && — ce bloc entier n'est rendu QUE
-            si totalPanier > 0 est vrai ; sinon, l'expression s'arrête à `false`
-            et React n'affiche rien du tout (contrairement au ternaire, qui
-            choisit entre DEUX rendus, ici on choisit entre "un rendu" et "rien"). */}
-        {totalPanier > 0 && (
-          <div style={{ 
-            marginTop: '25px', 
-            borderTop: '2px solid #e9ecef', 
-            paddingTop: '15px',
-            display: 'flex',
-            justify: 'space-between',
-            alignItems: 'center'
-          }}>
-            <h3 style={{ margin: 0, color: '#28a745' }}>
-              Total du panier : {totalPanier} €
-            </h3>
+          {/* Boutons de Filtre
+              Note d'apprentissage : chaque bouton appelle setFiltreActif au clic,
+              ce qui déclenche un re-render. Le style de fond/texte est calculé
+              dynamiquement via un opérateur ternaire comparant filtreActif à la
+              valeur du bouton, pour surligner visuellement le filtre actif. */}
+          <div style={{ marginBottom: '20px', display: 'flex', gap: '10px' }}>
             <button 
-              onClick={viderPanier} 
-              style={{ 
-                backgroundColor: '#dc3545', 
-                color: 'white',
-                border: 'none',
+              onClick={() => setFiltreActif('TOUS')}
+              style={{
                 padding: '8px 16px',
                 borderRadius: '4px',
+                border: 'none',
+                backgroundColor: filtreActif === 'TOUS' ? '#007bff' : '#e9ecef',
+                color: filtreActif === 'TOUS' ? '#fff' : '#333',
                 cursor: 'pointer'
               }}
             >
-              Vider le panier
+              Tous les produits
+            </button>
+            
+            <button 
+              onClick={() => setFiltreActif('PANIER')}
+              style={{
+                padding: '8px 16px',
+                borderRadius: '4px',
+                border: 'none',
+                backgroundColor: filtreActif === 'PANIER' ? '#007bff' : '#e9ecef',
+                color: filtreActif === 'PANIER' ? '#fff' : '#333',
+                cursor: 'pointer'
+              }}
+            >
+              {/* .filter().length recalcule à la volée le nombre de produits déjà
+                  dans le panier, sans passer par un state dédié (donnée dérivée) */}
+              Uniquement le panier ({produits.filter(p => p.quantite > 0).length})
             </button>
           </div>
-        )}
-      </div>
-    </Conteneur>
-  );
+
+          {/* Rendu Conditionnel de la Liste
+              Mémo L3 : opérateur ternaire (condition ? A : B) — on choisit ici
+              entre DEUX rendus mutuellement exclusifs : un message "liste vide"
+              ou la grille de cartes produits. On boucle bien sur produitsFiltres
+              (le tableau DÉRIVÉ), jamais sur produits (le tableau source), sinon
+              le filtre n'aurait aucun effet visible à l'écran. */}
+          {produitsFiltres.length === 0 ? (
+            <p style={{ fontStyle: 'italic', color: '#6c757d', textAlign: 'center', margin: '30px 0' }}>
+              🛒 Aucun produit à afficher dans cette vue.
+            </p>
+          ) : (
+            <div style={{ display: 'grid', gap: '15px' }}>
+              {/* .map() transforme chaque produit du tableau filtré en un composant
+                  CarteProduit. La prop key (produit.id, identifiant stable) est
+                  indispensable pour que React puisse suivre chaque élément lors
+                  des réconciliations du DOM virtuel.
+                  Les callbacks onAjouter/onDiminuer illustrent le pattern
+                  "data down, actions up" : la donnée descend en props, l'action
+                  utilisateur remonte vers les handlers définis plus haut. */}
+              {produitsFiltres.map((produit) => (
+                <CarteProduit
+                  key={produit.id}
+                  nom={produit.nom}
+                  description={produit.description}
+                  prix={produit.prix}
+                  quantite={produit.quantite}
+                  onAjouter={() => ajouterQuantite(produit.id)}
+                  onDiminuer={() => diminuerQuantite(produit.id)}
+                />
+              ))}
+            </div>
+          )}
+
+          {/* Total du Panier
+              Mémo L3 : court-circuit logique && — ce bloc entier n'est rendu QUE
+              si totalPanier > 0 est vrai ; sinon, l'expression s'arrête à `false`
+              et React n'affiche rien du tout (contrairement au ternaire, qui
+              choisit entre DEUX rendus, ici on choisit entre "un rendu" et "rien"). */}
+          {totalPanier > 0 && (
+            <div style={{ 
+              marginTop: '25px', 
+              borderTop: '2px solid #e9ecef', 
+              paddingTop: '15px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center'
+            }}>
+              <h3 style={{ margin: 0, color: '#28a745' }}>
+                Total du panier : {totalPanier} €
+              </h3>
+              <button 
+                onClick={viderPanier} 
+                style={{ 
+                  backgroundColor: '#dc3545', 
+                  color: 'white',
+                  border: 'none',
+                  padding: '8px 16px',
+                  borderRadius: '4px',
+                  cursor: 'pointer'
+                }}
+              >
+                Vider le panier
+              </button>
+            </div>
+          )}
+        </div>
+      </Conteneur>
+    </div>
+    );
 }
 
 export default App;
