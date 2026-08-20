@@ -33,7 +33,7 @@
 - 🔒 Formulaire d'inscription avec validation dynamique du mot de passe (`useEffect`)
 - ⏱️ Debounce sur la validation (email/mot de passe) via un Custom Hook `useDebounce`
 - 🔎 Recherche de produits en temps réel connectée à l'API DummyJSON (`RechercheProduits.jsx`)
-- 🎨 Bascule de thème clair/sombre via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
+- 🎨 Thème clair/sombre persistant (localStorage) via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
 
 ---
 
@@ -44,12 +44,12 @@ learn-react/
 ├── src/
 │   ├── components/              # Composants UI réutilisables
 │   │   ├── CarteProduit.jsx     # Composant : affichage d'un produit
-│   │   ├── Conteneur.jsx        # Composant wrapper : structure via la prop children
+│   │   ├── Conteneur.jsx        # Composant wrapper : adapte son style au thème via useTheme
 │   │   ├── FormulaireInscription.jsx  # Composant : formulaire d'inscription avec validation
-│   │   ├── BoutonTheme.jsx      # Composant : bascule du thème (clair/sombre)
+│   │   ├── BoutonTheme.jsx      # Composant : bascule le thème via useTheme
 │   │   └── RechercheProduits.jsx # Composant : recherche produits (API DummyJSON)
 │   ├── context/                 # Contextes React (état global transversal)
-│   │   └── ThemeContext.jsx     # Contexte : gestion du thème via Provider/useContext
+│   │   └── ThemeContext.jsx     # Contexte : ThemeProvider + hook useTheme
 │   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
 │   │   └── useDebounce.jsx      # Hook : temporisation des valeurs saisies
 │   ├── App.jsx                  # Composant racine : state global + logique métier
@@ -83,10 +83,12 @@ learn-react/
 | ⏱️ **Debounce** | Temporiser une action coûteuse via `setTimeout`/`clearTimeout` en cleanup |
 | 🧩 **Custom Hooks** | Extraire une logique réutilisable (`useDebounce`) hors des composants |
 | 🌐 **API réelle (DummyJSON)** | Chaîne `.then().catch()`, vérification `!res.ok`, filtrage strict de `AbortError` |
-| 🚦 **4 états UI** | Initial / Chargement / Succès / Erreur, pour une UX cohérente dès le premier rendu |
+| 🚦 **4 états UI** | Initial / Chargement / Succès / Erreur |
 | 🕳️ **Prop Drilling** | Problème résolu par la Context API pour les données globales et transversales |
 | 🏗️ **Context API** | `createContext`, `Provider`, `useContext` — partage d'état sans passage de props explicite |
-| 🧩 **Custom Hook de contexte** | Encapsulation de `useContext` (ex. `useTheme`) avec garde-fou en cas d'oubli du Provider |
+| 🧩 **Custom Hook de contexte** | `useTheme` : encapsule `useContext` avec garde-fou en cas d'oubli du Provider |
+| 💾 **Lazy initial state + persistance** | `useState(() => ...)` pour lire `localStorage` une fois, `useEffect` pour l'écrire à chaque changement |
+| 🔌 **Consommation découplée** | `BoutonTheme` et `Conteneur` accèdent au thème sans props ni lien direct entre eux |
 
 ---
 
@@ -103,7 +105,8 @@ learn-react/
 - [x] **Semaine 2 - Jeudi** : Custom Hooks (`useDebounce`)
 - [x] **Semaine 2 — Vendredi** : Projet `RechercheProduits.jsx` (API DummyJSON, AbortController, 4 états UI)
 - [x] **Semaine 3 — Lundi** : Context API (Provider/Consumer, `ThemeContext`, Custom Hook de contexte)
-- [ ] **Semaine 3 — Mardi** : *À venir*
+- [x] **Semaine 3 — Mardi** : Mini-projet Thème Dynamique (persistance localStorage, consommation découplée)
+- [ ] **Semaine 3 — Mercredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
