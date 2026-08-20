@@ -34,6 +34,7 @@
 - ⏱️ Debounce sur la validation (email/mot de passe) via un Custom Hook `useDebounce`
 - 🔎 Recherche de produits en temps réel connectée à l'API DummyJSON (`RechercheProduits.jsx`)
 - 🎨 Thème clair/sombre persistant (localStorage) via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
+- 🧠 Logique du panier extraite dans un Custom Hook dédié (`usePanier`), séparée du rendu de `App.jsx`
 
 ---
 
@@ -52,7 +53,8 @@ learn-react/
 │   │   └── ThemeContext.jsx     # Contexte : ThemeProvider + hook useTheme
 │   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
 │   │   └── useDebounce.jsx      # Hook : temporisation des valeurs saisies
-│   ├── App.jsx                  # Composant racine : state global + logique métier
+        └── usePanier.js         # State + handlers + données dérivées du panier
+│   ├── App.jsx                  # Composant racine : dédié au rendu, consomme usePanier()
 │   ├── App.css                  # Styles du composant App
 │   ├── index.css                # Styles globaux
 │   └── main.jsx                 # Point d'entrée de l'application
@@ -86,9 +88,11 @@ learn-react/
 | 🚦 **4 états UI** | Initial / Chargement / Succès / Erreur |
 | 🕳️ **Prop Drilling** | Problème résolu par la Context API pour les données globales et transversales |
 | 🏗️ **Context API** | `createContext`, `Provider`, `useContext` — partage d'état sans passage de props explicite |
-| 🧩 **Custom Hook de contexte** | `useTheme` : encapsule `useContext` avec garde-fou en cas d'oubli du Provider |
-| 💾 **Lazy initial state + persistance** | `useState(() => ...)` pour lire `localStorage` une fois, `useEffect` pour l'écrire à chaque changement |
-| 🔌 **Consommation découplée** | `BoutonTheme` et `Conteneur` accèdent au thème sans props ni lien direct entre eux |
+| 🧩 **Custom Hook de contexte** | `useTheme` : encapsule `useContext` avec garde-fou |
+| 💾 **Lazy initial state + persistance** | `useState(() => ...)` + `useEffect` pour synchroniser avec `localStorage` |
+| 🔌 **Consommation découplée** | `BoutonTheme`/`Conteneur` accèdent au thème sans props ni lien direct |
+| 🧱 **Separation of Concerns** | `usePanier` isole logique métier (state, handlers, calculs) du rendu JSX de `App.jsx` |
+| ⚖️ **Custom Hook vs Context** | Un Hook crée une instance de state par appel ; seul un Context partage réellement une même instance |
 
 ---
 
@@ -103,10 +107,11 @@ learn-react/
 - [x] **Semaine 2 - Mardi** : `fetch` + `AbortController` (memory leaks, race conditions)
 - [x] **Semaine 2 - Mercredi** : Validation dynamique + debounce
 - [x] **Semaine 2 - Jeudi** : Custom Hooks (`useDebounce`)
-- [x] **Semaine 2 — Vendredi** : Projet `RechercheProduits.jsx` (API DummyJSON, AbortController, 4 états UI)
-- [x] **Semaine 3 — Lundi** : Context API (Provider/Consumer, `ThemeContext`, Custom Hook de contexte)
-- [x] **Semaine 3 — Mardi** : Mini-projet Thème Dynamique (persistance localStorage, consommation découplée)
-- [ ] **Semaine 3 — Mercredi** : *À venir*
+- [x] **Semaine 2 - Vendredi** : Projet `RechercheProduits.jsx` (API DummyJSON, AbortController, 4 états UI)
+- [x] **Semaine 3 - Lundi** : Context API (Provider/Consumer, `ThemeContext`, Custom Hook de contexte)
+- [x] **Semaine 3 - Mardi** : Mini-projet Thème Dynamique (persistance localStorage, consommation découplée)
+- [x] **Semaine 3 - Mercredi** : Refactoring `usePanier` (Separation of Concerns, Custom Hook vs Context)
+- [ ] **Semaine 3 - Jeudi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -133,10 +138,10 @@ npm install
 npm run dev
 ```
 
-L'application sera alors accessible sur `http://localhost:5173` 🎉
+L'application sera alors accessible sur `http://localhost:5173`
 
 ---
 
 ## 📌 Note
 
-Ce projet n'a pas vocation à être un produit final, mais un **support d'apprentissage** progressif. N'hésitez pas à suivre son évolution au fil des commits ! 🙌
+Ce projet n'a pas vocation à être un produit final, mais un **support d'apprentissage** progressif. N'hésitez pas à suivre son évolution au fil des commits !
