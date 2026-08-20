@@ -1,11 +1,17 @@
-import React, { createContext, useState, useContext } from 'react';
+import React, { createContext, useState, useEffect, useContext } from 'react';
 
-// 1. Création du contexte
 const ThemeContext = createContext();
 
-// 2. Composant Provider
 export function ThemeProvider({ children }) {
-    const [theme, setTheme] = useState('light');
+    // Lecture initiale dans le localStorage (avec 'light' par défaut)
+    const [theme, setTheme] = useState(() => {
+        return localStorage.getItem('app-theme') || 'light';
+    });
+
+    // Sauvegarde dans le localStorage dès que le thème change
+    useEffect(() => {
+        localStorage.setItem('app-theme', theme);
+    }, [theme]);
 
     const toggleTheme = () => {
         setTheme((prevTheme) => (prevTheme === 'light' ? 'dark' : 'light'));
@@ -18,7 +24,6 @@ export function ThemeProvider({ children }) {
     );
 }
 
-// 3. Custom Hook dédié pour simplifier la consommation
 export function useTheme() {
     return useContext(ThemeContext);
 }
