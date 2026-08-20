@@ -93,6 +93,9 @@ learn-react/
 | 🔌 **Consommation découplée** | `BoutonTheme`/`Conteneur` accèdent au thème sans props ni lien direct |
 | 🧱 **Separation of Concerns** | `usePanier` isole logique métier (state, handlers, calculs) du rendu JSX de `App.jsx` |
 | ⚖️ **Custom Hook vs Context** | Un Hook crée une instance de state par appel ; seul un Context partage réellement une même instance |
+| 🏗️ **Motif Provider/Hook** | Encapsuler `createContext` sans l'exporter ; exposer uniquement Provider + Hook(s) publics |
+| ⚡ **Découpage State/Dispatch** | Séparer un Context d'état (change souvent) d'un Context de dispatchers (référence stable) pour limiter les re-renders |
+| 🚨 **Fail Fast** | `createContext(undefined)` + `throw new Error(...)` dans le Hook pour détecter immédiatement un usage hors Provider |
 
 ---
 
@@ -111,7 +114,8 @@ learn-react/
 - [x] **Semaine 3 - Lundi** : Context API (Provider/Consumer, `ThemeContext`, Custom Hook de contexte)
 - [x] **Semaine 3 - Mardi** : Mini-projet Thème Dynamique (persistance localStorage, consommation découplée)
 - [x] **Semaine 3 - Mercredi** : Refactoring `usePanier` (Separation of Concerns, Custom Hook vs Context)
-- [ ] **Semaine 3 - Jeudi** : *À venir*
+- [x] **Semaine 3 - Jeudi** : Context API dans les librairies open-source (motif Provider/Hook, découpage state/dispatch, fail fast)
+- [ ] **Semaine 3 - Vendredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
