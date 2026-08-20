@@ -32,6 +32,8 @@
 - 👁️ Rendu conditionnel : message "panier vide" et bloc total masqué/affiché selon l'état
 - 🔒 Formulaire d'inscription avec validation dynamique du mot de passe (`useEffect`)
 - ⏱️ Debounce sur la validation (email/mot de passe) via un Custom Hook `useDebounce`
+- 🔎 Recherche de produits en temps réel connectée à l'API DummyJSON (`RechercheProduits.jsx`)
+- 🎨 Bascule de thème clair/sombre via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
 
 ---
 
@@ -40,15 +42,20 @@
 ```
 learn-react/
 ├── src/
-│   ├── components/       # Composants UI réutilisables
-│   │   ├── CarteProduit.jsx          # Composant : affichage d'un produit
-│   │   ├── Conteneur.jsx             # Composant wrapper : structure via la prop children
-│   │   └── FormulaireInscription.jsx # Composant : formulaire d'inscription avec validation
-│   ├── hooks/            # Hooks React personnalisés (Custom Hooks)
-│   │   └── useDebounce.jsx           # Hook personnalisé : temporisation des valeurs saisies
-│   ├── App.jsx           # Composant racine : state global + logique métier du panier
-│   ├── main.jsx          # Point d'entrée de l'application
-│   └── index.css         # Styles globaux
+│   ├── components/              # Composants UI réutilisables
+│   │   ├── CarteProduit.jsx     # Composant : affichage d'un produit
+│   │   ├── Conteneur.jsx        # Composant wrapper : structure via la prop children
+│   │   ├── FormulaireInscription.jsx  # Composant : formulaire d'inscription avec validation
+│   │   ├── BoutonTheme.jsx      # Composant : bascule du thème (clair/sombre)
+│   │   └── RechercheProduits.jsx # Composant : recherche produits (API DummyJSON)
+│   ├── context/                 # Contextes React (état global transversal)
+│   │   └── ThemeContext.jsx     # Contexte : gestion du thème via Provider/useContext
+│   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
+│   │   └── useDebounce.jsx      # Hook : temporisation des valeurs saisies
+│   ├── App.jsx                  # Composant racine : state global + logique métier
+│   ├── App.css                  # Styles du composant App
+│   ├── index.css                # Styles globaux
+│   └── main.jsx                 # Point d'entrée de l'application
 ├── public/
 ├── index.html
 ├── package.json
@@ -75,6 +82,11 @@ learn-react/
 | 🛑 **`AbortController`** | Annuler une requête `fetch` pour éviter fuites mémoire et race conditions |
 | ⏱️ **Debounce** | Temporiser une action coûteuse via `setTimeout`/`clearTimeout` en cleanup |
 | 🧩 **Custom Hooks** | Extraire une logique réutilisable (`useDebounce`) hors des composants |
+| 🌐 **API réelle (DummyJSON)** | Chaîne `.then().catch()`, vérification `!res.ok`, filtrage strict de `AbortError` |
+| 🚦 **4 états UI** | Initial / Chargement / Succès / Erreur, pour une UX cohérente dès le premier rendu |
+| 🕳️ **Prop Drilling** | Problème résolu par la Context API pour les données globales et transversales |
+| 🏗️ **Context API** | `createContext`, `Provider`, `useContext` — partage d'état sans passage de props explicite |
+| 🧩 **Custom Hook de contexte** | Encapsulation de `useContext` (ex. `useTheme`) avec garde-fou en cas d'oubli du Provider |
 
 ---
 
@@ -89,7 +101,9 @@ learn-react/
 - [x] **Semaine 2 - Mardi** : `fetch` + `AbortController` (memory leaks, race conditions)
 - [x] **Semaine 2 - Mercredi** : Validation dynamique + debounce
 - [x] **Semaine 2 - Jeudi** : Custom Hooks (`useDebounce`)
-- [x] **Semaine 2 - Vendredi** : Projet intégrateur (Formulaire d'inscription avec validation et debounce)
+- [x] **Semaine 2 — Vendredi** : Projet `RechercheProduits.jsx` (API DummyJSON, AbortController, 4 états UI)
+- [x] **Semaine 3 — Lundi** : Context API (Provider/Consumer, `ThemeContext`, Custom Hook de contexte)
+- [ ] **Semaine 3 — Mardi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
