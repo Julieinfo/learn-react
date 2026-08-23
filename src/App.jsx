@@ -11,7 +11,7 @@ import FormulaireInscription from './components/FormulaireInscription';
 import Conteneur from './components/Conteneur';
 import { useTheme } from './context/ThemeContext';
 import BoutonTheme from './components/BoutonTheme';
-import { usePanier } from './hooks/usePanier';
+import { useCart } from './context/CartContext';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -40,7 +40,7 @@ function App() {
     ajouterQuantite,
     diminuerQuantite,
     viderPanier
-  } = usePanier(PRODUITS_INITIAUX);
+  } = useCart();
 
   // --------------------------------------------------------------------------
   // 🎨 RENDU JSX
