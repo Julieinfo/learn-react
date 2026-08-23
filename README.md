@@ -34,7 +34,8 @@
 - ⏱️ Debounce sur la validation (email/mot de passe) via un Custom Hook `useDebounce`
 - 🔎 Recherche de produits en temps réel connectée à l'API DummyJSON (`RechercheProduits.jsx`)
 - 🎨 Thème clair/sombre persistant (localStorage) via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
-- 🧠 Logique du panier extraite dans un Custom Hook dédié (`usePanier`), séparée du rendu de `App.jsx`
+- 🧠 Logique du panier extraite dans un Custom Hook dédié (`usePanier`)
+- 🛒 Panier migré en Context API (`CartContext.jsx`), persistant via `JSON.stringify`/`JSON.parse` sécurisé
 
 ---
 
@@ -51,10 +52,11 @@ learn-react/
 │   │   └── RechercheProduits.jsx # Composant : recherche produits (API DummyJSON)
 │   ├── context/                 # Contextes React (état global transversal)
 │   │   └── ThemeContext.jsx     # Contexte : ThemeProvider + hook useTheme
+│   │   └── CartContext.jsx      # Contexte : CartProvider + hook useCart
 │   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
 │   │   └── useDebounce.jsx      # Hook : temporisation des valeurs saisies
         └── usePanier.js         # State + handlers + données dérivées du panier
-│   ├── App.jsx                  # Composant racine : dédié au rendu, consomme usePanier()
+│   ├── App.jsx                  # Composant racine : dédié au rendu, consomme useCart()
 │   ├── App.css                  # Styles du composant App
 │   ├── index.css                # Styles globaux
 │   └── main.jsx                 # Point d'entrée de l'application
@@ -86,16 +88,18 @@ learn-react/
 | 🧩 **Custom Hooks** | Extraire une logique réutilisable (`useDebounce`) hors des composants |
 | 🌐 **API réelle (DummyJSON)** | Chaîne `.then().catch()`, vérification `!res.ok`, filtrage strict de `AbortError` |
 | 🚦 **4 états UI** | Initial / Chargement / Succès / Erreur |
-| 🕳️ **Prop Drilling** | Problème résolu par la Context API pour les données globales et transversales |
-| 🏗️ **Context API** | `createContext`, `Provider`, `useContext` — partage d'état sans passage de props explicite |
-| 🧩 **Custom Hook de contexte** | `useTheme` : encapsule `useContext` avec garde-fou |
+| 🕳️ **Prop Drilling** | Résolu par la Context API pour les données globales et transversales |
+| 🏗️ **Context API** | `createContext`, `Provider`, `useContext` — partage d'état sans props explicite |
+| 🧩 **Custom Hook de contexte** | `useTheme`/`useCart` : encapsulent `useContext` avec garde-fou |
 | 💾 **Lazy initial state + persistance** | `useState(() => ...)` + `useEffect` pour synchroniser avec `localStorage` |
-| 🔌 **Consommation découplée** | `BoutonTheme`/`Conteneur` accèdent au thème sans props ni lien direct |
-| 🧱 **Separation of Concerns** | `usePanier` isole logique métier (state, handlers, calculs) du rendu JSX de `App.jsx` |
-| ⚖️ **Custom Hook vs Context** | Un Hook crée une instance de state par appel ; seul un Context partage réellement une même instance |
-| 🏗️ **Motif Provider/Hook** | Encapsuler `createContext` sans l'exporter ; exposer uniquement Provider + Hook(s) publics |
-| ⚡ **Découpage State/Dispatch** | Séparer un Context d'état (change souvent) d'un Context de dispatchers (référence stable) pour limiter les re-renders |
-| 🚨 **Fail Fast** | `createContext(undefined)` + `throw new Error(...)` dans le Hook pour détecter immédiatement un usage hors Provider |
+| 🔌 **Consommation découplée** | Composants accédant à plusieurs contextes sans props ni lien direct |
+| 🧱 **Separation of Concerns** | `usePanier` isole logique métier du rendu JSX |
+| ⚖️ **Custom Hook vs Context** | Un Hook crée une instance par appel ; seul un Context partage réellement une instance |
+| 🏗️ **Motif Provider/Hook** | Context non exporté, seuls Provider + Hook(s) publics exposés (inspiré React Router/TanStack Query) |
+| ⚡ **Découpage State/Dispatch** | Séparer état (change souvent) et dispatchers (stables) pour limiter les re-renders |
+| 🚨 **Fail Fast** | Garde-fou systématique (`createContext(undefined)` + erreur explicite) |
+| 🏗️ **Multi-Contextes empilés** | `ThemeProvider` + `CartProvider` combinés, chacun indépendant avec son propre garde-fou |
+| 💾 **Persistance JSON sécurisée** | `JSON.stringify`/`JSON.parse` protégés par `try/catch` pour un state complexe (tableau d'objets) |
 
 ---
 
@@ -113,9 +117,10 @@ learn-react/
 - [x] **Semaine 2 - Vendredi** : Projet `RechercheProduits.jsx` (API DummyJSON, AbortController, 4 états UI)
 - [x] **Semaine 3 - Lundi** : Context API (Provider/Consumer, `ThemeContext`, Custom Hook de contexte)
 - [x] **Semaine 3 - Mardi** : Mini-projet Thème Dynamique (persistance localStorage, consommation découplée)
-- [x] **Semaine 3 - Mercredi** : Refactoring `usePanier` (Separation of Concerns, Custom Hook vs Context)
+- [x] **Semaine 3 - Mercredi** : Refactoring `useCart` (Separation of Concerns, Custom Hook vs Context)
 - [x] **Semaine 3 - Jeudi** : Context API dans les librairies open-source (motif Provider/Hook, découpage state/dispatch, fail fast)
-- [ ] **Semaine 3 - Vendredi** : *À venir*
+- [x] **Semaine 3 - Vendredi** : Synthèse S1-S3 + Projet intégrateur multi-contextes (`ThemeContext` + `CartContext`)
+- [x] **Semaine 4 - Lundi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 

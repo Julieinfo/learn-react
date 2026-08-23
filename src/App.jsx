@@ -30,7 +30,7 @@ function App() {
     transition: 'all 0.3s ease'
   };
 
-  // 🟢 Extraction complète de la logique métier via le Custom Hook `usePanier`
+  // 🟢 Extraction complète de la logique métier via le Custom Hook `useCart`
   const {
     produitsFiltres,
     filtreActif,
