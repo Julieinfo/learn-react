@@ -56,6 +56,8 @@ learn-react/
 │   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
 │   │   └── useDebounce.jsx      # Hook : temporisation des valeurs saisies
         └── usePanier.js         # State + handlers + données dérivées du panier
+    |── reducers/                # Reducers pour useReducer (logique métier pure)
+        |   └── panierReducer.js      # Reducer : transitions d'état du panier
 │   ├── App.jsx                  # Composant racine : dédié au rendu, consomme useCart()
 │   ├── App.css                  # Styles du composant App
 │   ├── index.css                # Styles globaux
@@ -100,6 +102,11 @@ learn-react/
 | 🚨 **Fail Fast** | Garde-fou systématique (`createContext(undefined)` + erreur explicite) |
 | 🏗️ **Multi-Contextes empilés** | `ThemeProvider` + `CartProvider` combinés, chacun indépendant avec son propre garde-fou |
 | 💾 **Persistance JSON sécurisée** | `JSON.stringify`/`JSON.parse` protégés par `try/catch` pour un state complexe (tableau d'objets) |
+| 🧮 **Reducer pur** | Fonction `(state, action) → nouvelState`, déterministe, sans effet de bord, immutabilité stricte |
+| 📨 **Protocole d'Action** | Objet `{ type, payload }` formalisant chaque intention de mise à jour |
+| 🔄 **useReducer** | Centralise les transitions d'état complexes dans une fonction pure, découplée de l'UI |
+| 🧩 **Action Creators** | Fonctions utilitaires (`ajouterProduit(...)`) encapsulant `dispatch`, exposées en plus du `dispatch` brut |
+| 💾 **Initializer (useReducer)** | 3ᵉ argument optionnel pour une initialisation paresseuse depuis `localStorage` |
 
 ---
 
@@ -120,7 +127,8 @@ learn-react/
 - [x] **Semaine 3 - Mercredi** : Refactoring `useCart` (Separation of Concerns, Custom Hook vs Context)
 - [x] **Semaine 3 - Jeudi** : Context API dans les librairies open-source (motif Provider/Hook, découpage state/dispatch, fail fast)
 - [x] **Semaine 3 - Vendredi** : Synthèse S1-S3 + Projet intégrateur multi-contextes (`ThemeContext` + `CartContext`)
-- [x] **Semaine 4 - Lundi** : *À venir*
+- [x] **Semaine 4 - Lundi** : `useReducer` & fonctions pures (reducer, dispatch, intégration Context API)
+- [x] **Semaine 4 - Mardi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
