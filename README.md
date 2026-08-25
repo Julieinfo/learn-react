@@ -107,6 +107,10 @@ learn-react/
 | 🔄 **useReducer** | Centralise les transitions d'état complexes dans une fonction pure, découplée de l'UI |
 | 🧩 **Action Creators** | Fonctions utilitaires (`ajouterProduit(...)`) encapsulant `dispatch`, exposées en plus du `dispatch` brut |
 | 💾 **Initializer (useReducer)** | 3ᵉ argument optionnel pour une initialisation paresseuse depuis `localStorage` |
+| 🔧 **Extensibilité du reducer** | Nouveaux cas d'usage ajoutés via de nouveaux `case`, sans toucher à l'existant (Open/Closed) |
+| 📊 **Calculs dérivés en cascade** | Total Brut → Remise → Total Net, tous recalculés à chaque rendu depuis un state minimal |
+| 🎯 **Pattern Command** | `dispatch` centralise toutes les mutations d'état en un point d'entrée unique |
+| 🛡️ **Persistance découplée** | `useEffect([state])` synchronise `localStorage` en dehors du reducer, qui reste pur |
 
 ---
 
@@ -128,7 +132,8 @@ learn-react/
 - [x] **Semaine 3 - Jeudi** : Context API dans les librairies open-source (motif Provider/Hook, découpage state/dispatch, fail fast)
 - [x] **Semaine 3 - Vendredi** : Synthèse S1-S3 + Projet intégrateur multi-contextes (`ThemeContext` + `CartContext`)
 - [x] **Semaine 4 - Lundi** : `useReducer` & fonctions pures (reducer, dispatch, intégration Context API)
-- [x] **Semaine 4 - Mardi** : *À venir*
+- [x] **Semaine 4 - Mardi** : Mini-projet Panier complet géré par reducer (extensibilité, Pattern Command, persistance découplée)
+- [x] **Semaine 4 - Mercredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
