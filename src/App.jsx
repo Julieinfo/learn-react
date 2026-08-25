@@ -12,6 +12,7 @@ import Conteneur from './components/Conteneur';
 import { useTheme } from './context/ThemeContext';
 import BoutonTheme from './components/BoutonTheme';
 import { useCart } from './context/CartContext';
+import { useState } from 'react';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -35,12 +36,33 @@ function App() {
     produitsFiltres,
     filtreActif,
     totalPanier,
+    reduction,
+    appliquerPromo,
     totalArticles,
     setFiltreActif,
     ajouterQuantite,
     diminuerQuantite,
     viderPanier
   } = useCart();
+
+  const [codePromo, setCodePromo] = useState('');
+
+  const handleValidationPromo = (e) => {
+    e.preventDefault();
+    
+    // On extrait la valeur numérique saisie dans l'input
+    const valeurSaisie = parseFloat(codePromo.trim());
+
+    // Verification : est-ce un nombre valide compris entre 1 et 100 ?
+    if (!isNaN(valeurSaisie) && valeurSaisie >= 1 && valeurSaisie <= 100) {
+      const taux = valeurSaisie / 100; // Conversion en décimal (ex: 20 => 0.20)
+      appliquerPromo(taux);
+      alert(`Code promo appliqué : ${valeurSaisie}% de réduction !`);
+      setCodePromo(''); // Optionnel : réinitialise le champ après validation
+    } else {
+      alert('Veuillez entrer un pourcentage valide compris entre 1 et 100 !');
+    }
+  };
 
   // --------------------------------------------------------------------------
   // 🎨 RENDU JSX
@@ -163,6 +185,21 @@ function App() {
               </button>
             </div>
           )}
+
+          {/* Bloc Code Promo */}
+          <form onSubmit={handleValidationPromo} style={{ marginTop: '1rem'}}>
+            <input
+              type="text"
+              placeholder="Entrez le code promo"
+              value={codePromo}
+              onChange={(e) => setCodePromo(e.target.value)}
+            />
+            <button type="submit">Appliquer</button>
+          </form>
+
+          {/* Affichage du total et de la réduction */}
+          {reduction > 0 && <p style={{ color: 'green' }}>Réduction appliquée : {reduction * 100}%</p>}
+          <h3>Total du panier : {totalPanier.toFixed(2)} €</h3>
         </div>
       </Conteneur>
     </div>

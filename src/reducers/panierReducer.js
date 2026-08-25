@@ -22,6 +22,18 @@ export function panierReducer(state, action) {
                 )
             };
 
+        case 'SUPPRIMER_ARTICLE':
+            return {
+                ...state,
+                produits: state.produits.filter((p) => p.id !== action.payload)
+            };
+
+        case 'AJOUTER_NOUVEAU_PRODUIT':
+            return {
+                ...state,
+                produits: [...state.produits, action.payload]
+            };
+
         case 'VIDER_PANIER':
             return {
                 ...state,
@@ -32,6 +44,12 @@ export function panierReducer(state, action) {
             return {
                 ...state,
                 filtreActif: action.payload
+            };
+
+        case 'APPLIQUER_PROMO':
+            return {
+                ...state,
+                reduction: action.payload // ex: 0.20 pour 20%
             };
 
         default:
