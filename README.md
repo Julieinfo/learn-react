@@ -116,6 +116,10 @@ learn-react/
 | 📊 **useMemo (calculs)** | Évite de recalculer une donnée dérivée coûteuse à chaque rendu non pertinent |
 | 🛡️ **useMemo (Provider value)** | Stoppe la propagation de re-renders à la source du Context — optimisation la plus critique |
 | 🧬 **Synergie Reducer/Context/Mémoïsation** | Trois piliers complémentaires : prévisibilité, distribution, performance |
+| 📛 **Namespacing des actions** | Préfixer les `type` par domaine (`panier/...`, `auth/...`) pour éviter les collisions |
+| 🚦 **Machine à états finis** | Un champ `status` unique et exclusif (`idle/loading/success/error`) plus robuste que plusieurs booléens |
+| 🗂️ **Normalisation des données** | Séparer `data` (contenu) et `selectedIds` (métadonnées d'UI) |
+| 🔍 **Audit de reducer** | Grille de code review : mutation directe, effets de bord, `default` manquant |
 
 ---
 
@@ -139,7 +143,8 @@ learn-react/
 - [x] **Semaine 4 - Lundi** : `useReducer` & fonctions pures (reducer, dispatch, intégration Context API)
 - [x] **Semaine 4 - Mardi** : Mini-projet Panier complet géré par reducer (extensibilité, Pattern Command, persistance découplée)
 - [x] **Semaine 4 - Mercredi** : Motifs de performance (`React.memo`, `useCallback`, `useMemo`) & synergie architecturale
-- [ ] **Semaine 4 — Jeudi** : *À venir*
+- [ ] **Semaine 4 — Jeudi** : Lecture & audit de code d'un reducer réel (namespacing, machine à états, normalisation, code review)
+- [ ] **Semaine 4 — Vendredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
