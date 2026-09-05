@@ -111,6 +111,11 @@ learn-react/
 | 📊 **Calculs dérivés en cascade** | Total Brut → Remise → Total Net, tous recalculés à chaque rendu depuis un state minimal |
 | 🎯 **Pattern Command** | `dispatch` centralise toutes les mutations d'état en un point d'entrée unique |
 | 🛡️ **Persistance découplée** | `useEffect([state])` synchronise `localStorage` en dehors du reducer, qui reste pur |
+| 🪞 **React.memo** | Compare les props superficiellement (`Object.is`) avant de décider de re-render un composant |
+| 🔧 **useCallback** | Stabilise la référence d'une fonction entre les rendus, indispensable pour que `React.memo` fonctionne |
+| 📊 **useMemo (calculs)** | Évite de recalculer une donnée dérivée coûteuse à chaque rendu non pertinent |
+| 🛡️ **useMemo (Provider value)** | Stoppe la propagation de re-renders à la source du Context — optimisation la plus critique |
+| 🧬 **Synergie Reducer/Context/Mémoïsation** | Trois piliers complémentaires : prévisibilité, distribution, performance |
 
 ---
 
@@ -133,7 +138,8 @@ learn-react/
 - [x] **Semaine 3 - Vendredi** : Synthèse S1-S3 + Projet intégrateur multi-contextes (`ThemeContext` + `CartContext`)
 - [x] **Semaine 4 - Lundi** : `useReducer` & fonctions pures (reducer, dispatch, intégration Context API)
 - [x] **Semaine 4 - Mardi** : Mini-projet Panier complet géré par reducer (extensibilité, Pattern Command, persistance découplée)
-- [x] **Semaine 4 - Mercredi** : *À venir*
+- [x] **Semaine 4 - Mercredi** : Motifs de performance (`React.memo`, `useCallback`, `useMemo`) & synergie architecturale
+- [ ] **Semaine 4 — Jeudi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 

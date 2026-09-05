@@ -1,4 +1,4 @@
-import React, { createContext, useReducer, useEffect, useContext } from 'react';
+import React, { createContext, useReducer, useEffect, useContext, useCallback, useMemo } from 'react';
 import { panierReducer, PRODUITS_INITIAUX } from '../reducers/panierReducer';
 
 const CartContext = createContext();
@@ -21,47 +21,65 @@ export function CartProvider({ children }) {
     localStorage.setItem('app-cart', JSON.stringify(state.produits));
   }, [state.produits]);
 
-  // Actions exposées
-  const ajouterQuantite = (id) => dispatch({ type: 'AJOUTER_QUANTITE', payload: id });
-  const diminuerQuantite = (id) => dispatch({ type: 'DIMINUER_QUANTITE', payload: id });
-  const supprimerArticle = (id) => dispatch({ type: 'SUPPRIMER_ARTICLE', payload: id });
-  const viderPanier = () => dispatch({ type: 'VIDER_PANIER' });
-  const setFiltreActif = (filtre) => dispatch({ type: 'SET_FILTRE', payload: filtre });
-  const ajouterNouveauProduit = (produit) => dispatch({ type: 'AJOUTER_NOUVEAU_PRODUIT', payload: produit });
-  const appliquerPromo = (taux) => dispatch({ type: 'APPLIQUER_PROMO', payload: taux });
+  // 🟢 Handlers stables stabilisés avec useCallback
+  const ajouterQuantite = useCallback((id) => dispatch({ type: 'AJOUTER_QUANTITE', payload: id }), []);
+  const diminuerQuantite = useCallback((id) => dispatch({ type: 'DIMINUER_QUANTITE', payload: id }), []);
+  const supprimerArticle = useCallback((id) => dispatch({ type: 'SUPPRIMER_ARTICLE', payload: id }), []);
+  const viderPanier = useCallback(() => dispatch({ type: 'VIDER_PANIER' }), []);
+  const setFiltreActif = useCallback((filtre) => dispatch({ type: 'SET_FILTRE', payload: filtre }), []);
+  const ajouterNouveauProduit = useCallback((produit) => dispatch({ type: 'AJOUTER_NOUVEAU_PRODUIT', payload: produit }), []);
+  const appliquerPromo = useCallback((taux) => dispatch({ type: 'APPLIQUER_PROMO', payload: taux }), []);
 
-  // Données dérivées
-  const produitsFiltres = state.produits.filter((p) =>
-    state.filtreActif === 'PANIER' ? p.quantite > 0 : true
-  );
+  // Données dérivées mémorisées avec useMemo
+  const produitsFiltres = useMemo(() => {
+    return state.produits.filter((p) =>
+      state.filtreActif === 'PANIER' ? p.quantite > 0 : true
+    );
+  }, [state.produits, state.filtreActif]);
 
-  const brutTotal = state.produits.reduce(
-    (acc, p) => acc + (p.prix || 0) * p.quantite,
-    0
-  );
+  const totalPanier = useMemo(() => {
+    const brutTotal = state.produits.reduce((acc, p) => acc + (p.prix || 0) * p.quantite, 0);
+    return brutTotal * (1 - (state.reduction || 0));
+  }, [state.produits, state.reduction]);
 
-  const totalPanier = brutTotal * (1 - (state.reduction || 0));
-  const totalArticles = state.produits.filter((p) => p.quantite > 0).length;
+  const totalArticles = useMemo(() => {
+    return state.produits.filter((p) => p.quantite > 0).length;
+  }, [state.produits]);
+
+  // 🟢 Mémorisation globale de la valeur du context
+  const contextValue = useMemo(() => ({
+    produits: state.produits,
+    produitsFiltres,
+    filtreActif: state.filtreActif,
+    reduction: state.reduction,
+    totalPanier,
+    totalArticles,
+    dispatch,
+    setFiltreActif,
+    ajouterQuantite,
+    diminuerQuantite,
+    supprimerArticle,
+    viderPanier,
+    ajouterNouveauProduit,
+    appliquerPromo
+  }), [
+    state.produits,
+    state.filtreActif,
+    state.reduction,
+    produitsFiltres,
+    totalPanier,
+    totalArticles,
+    setFiltreActif,
+    ajouterQuantite,
+    diminuerQuantite,
+    supprimerArticle,
+    viderPanier,
+    ajouterNouveauProduit,
+    appliquerPromo
+  ]);
 
   return (
-    <CartContext.Provider
-      value={{
-        produits: state.produits,
-        produitsFiltres,
-        filtreActif: state.filtreActif,
-        reduction: state.reduction,
-        totalPanier,
-        totalArticles,
-        dispatch,
-        setFiltreActif,
-        ajouterQuantite,
-        diminuerQuantite,
-        supprimerArticle,
-        viderPanier,
-        ajouterNouveauProduit,
-        appliquerPromo
-      }}
-    >
+    <CartContext.Provider value={contextValue}>
       {children}
     </CartContext.Provider>
   );
