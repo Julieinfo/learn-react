@@ -36,6 +36,7 @@
 - 🎨 Thème clair/sombre persistant (localStorage) via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
 - 🧠 Logique du panier extraite dans un Custom Hook dédié (`usePanier`)
 - 🛒 Panier migré en Context API (`CartContext.jsx`), persistant via `JSON.stringify`/`JSON.parse` sécurisé
+- ⏪ Todo App avancée avec fonctionnalité Undo (annuler) via historique `past`/`present`
 
 ---
 
@@ -58,6 +59,7 @@ learn-react/
         └── usePanier.js         # State + handlers + données dérivées du panier
     |── reducers/                # Reducers pour useReducer (logique métier pure)
         |   └── panierReducer.js      # Reducer : transitions d'état du panier
+        └── todoReducer.js       # Reducer avec historique past/present, pattern Undo
 │   ├── App.jsx                  # Composant racine : dédié au rendu, consomme useCart()
 │   ├── App.css                  # Styles du composant App
 │   ├── index.css                # Styles globaux
@@ -123,6 +125,9 @@ learn-react/
 | 🧠 **Technique Feynman** | Formaliser sa compréhension via analogies (State/Action/Dispatch/Reducer, Virtual DOM, flux unidirectionnel) |
 | ⚖️ **Matrice useState vs useReducer** | `useState` pour une valeur simple, `useReducer` pour des transitions d'état complexes et interdépendantes |
 | ⚖️ **Matrice de mémoïsation** | Mémoriser uniquement pour une référence stable transmise à un enfant optimisé, ou un calcul réellement coûteux |
+| ⏪ **Pattern Undo (past/present)** | Empiler l'ancien état avant chaque mutation ; `UNDO` dépile sans recalcul (logique LIFO) |
+| 🎯 **Dépendances ciblées** | `useEffect`/`useMemo` doivent dépendre de la sous-branche précise de l'état, pas de l'objet complet |
+| 🧩 **Séparation UI/données** | Un filtre d'affichage (non-undoable) reste hors du reducer dédié aux données métier |
 
 ---
 

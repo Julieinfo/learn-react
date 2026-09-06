@@ -13,6 +13,7 @@ import { useTheme } from './context/ThemeContext';
 import BoutonTheme from './components/BoutonTheme';
 import { useCart } from './context/CartContext';
 import { useState } from 'react';
+import TodoApp from './components/TodoApp';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -72,6 +73,7 @@ function App() {
       <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
         <BoutonTheme />
       </header>
+      <TodoApp />
 
       <Conteneur>
         <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
