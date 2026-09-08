@@ -51,6 +51,8 @@ learn-react/
 │   │   ├── FormulaireInscription.jsx  # Composant : formulaire d'inscription avec validation
 │   │   ├── BoutonTheme.jsx      # Composant : bascule le thème via useTheme
 │   │   └── RechercheProduits.jsx # Composant : recherche produits (API DummyJSON)
+|   |   └── TodoApp.jsx              # Composant : gestionnaire de tâches avec Undo
+|   |   └── GesstionProduits.jsx # Composant : gestion des produits (CRUD)
 │   ├── context/                 # Contextes React (état global transversal)
 │   │   └── ThemeContext.jsx     # Contexte : ThemeProvider + hook useTheme
 │   │   └── CartContext.jsx      # Contexte : CartProvider + hook useCart
@@ -128,6 +130,9 @@ learn-react/
 | ⏪ **Pattern Undo (past/present)** | Empiler l'ancien état avant chaque mutation ; `UNDO` dépile sans recalcul (logique LIFO) |
 | 🎯 **Dépendances ciblées** | `useEffect`/`useMemo` doivent dépendre de la sous-branche précise de l'état, pas de l'objet complet |
 | 🧩 **Séparation UI/données** | Un filtre d'affichage (non-undoable) reste hors du reducer dédié aux données métier |
+| ⚖️ **useMemo vs useCallback** | `useMemo` mémorise une valeur, `useCallback` mémorise une référence de fonction (`useCallback(fn, deps)` ≡ `useMemo(() => fn, deps)`) |
+| 💸 **Overhead de mémoïsation** | Chaque Hook a un coût de comparaison/stockage — à n'utiliser que si le bénéfice le justifie réellement |
+| 🔗 **Synergie useCallback + React.memo** | `useCallback` n'a d'effet que si un composant enfant mémoïsé exploite réellement la stabilité de référence |
 
 ---
 
@@ -153,7 +158,8 @@ learn-react/
 - [x] **Semaine 4 - Mercredi** : Motifs de performance (`React.memo`, `useCallback`, `useMemo`) & synergie architecturale
 - [ ] **Semaine 4 - Jeudi** : Lecture & audit de code d'un reducer réel (namespacing, machine à états, normalisation, code review)
 - [ ] **Semaine 4 - Vendredi** : Validation Feynman + Bilan de compétences global (Semaines 1 à 4)
-- [ ] **Semaine 5 - Lundi** : *À venir*
+- [ ] **Semaine 5 - Lundi** : `useMemo` vs `useCallback` (égalité référentielle, overhead, cas d'usage de production)
+- [ ] **Semaine 5 - Mardi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
