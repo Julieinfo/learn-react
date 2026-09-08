@@ -14,6 +14,7 @@ import BoutonTheme from './components/BoutonTheme';
 import { useCart } from './context/CartContext';
 import { useState } from 'react';
 import TodoApp from './components/TodoApp';
+import GestionProduits from './components/GestionProduits';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -96,6 +97,7 @@ function App() {
         </div>
 
         {/* Section 2 : Boutique & Panier */}
+        <GestionProduits />
         <div style={{
           backgroundColor: theme === 'light' ? '#ffffff' : '#2b2b2b',
           border: theme === 'light' ? '1px solid #dee2e6' : '1px solid #444',
