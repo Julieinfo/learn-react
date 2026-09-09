@@ -15,6 +15,7 @@ import { useCart } from './context/CartContext';
 import { useState } from 'react';
 import TodoApp from './components/TodoApp';
 import GestionProduits from './components/GestionProduits';
+import CompteurProfiler from './components/CompteurProfiler';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -74,14 +75,8 @@ function App() {
       <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
         <BoutonTheme />
       </header>
-      <TodoApp />
 
-      <Conteneur>
-        <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
-          🛒 Application Demo React
-        </h1>
-
-        {/* Section 1 : Formulaire d'inscription */}
+      {/* Section 1 : Formulaire d'inscription */}
         <div style={{
           backgroundColor: theme === 'light' ? '#f8f9fa' : '#2b2b2b',
           border: theme === 'light' ? '1px solid #e9ecef' : '1px solid #444',
@@ -95,9 +90,22 @@ function App() {
           </h2>
           <FormulaireInscription />
         </div>
+      
+      {/* Section 2 : TodoApp */}
+      <TodoApp />
 
-        {/* Section 2 : Boutique & Panier */}
-        <GestionProduits />
+      {/* Section 3 : Compteur avec Profiler */}
+      <CompteurProfiler />
+
+      {/* Section 4 : Gestion des Produits */}
+      <GestionProduits />
+
+      {/* Section 5 : Boutique & Panier */}
+      <Conteneur>
+        <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
+          🛒 Application Demo React
+        </h1>
+
         <div style={{
           backgroundColor: theme === 'light' ? '#ffffff' : '#2b2b2b',
           border: theme === 'light' ? '1px solid #dee2e6' : '1px solid #444',
