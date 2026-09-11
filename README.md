@@ -178,7 +178,7 @@ learn-react/
 - [x] **Semaine 5 - Mardi** : Mardi** : Profiling de performance (API `<Profiler>`, React DevTools, diagnostic des re-rendus superflus, moving state down / lifting content up)`
 - [x] **Semaine 5 - Mercredi** : Refactoring de performance TodoApp (isolation `\TodoItem` via `React.memo`, mémorisation conjointe `useReducer` + `useCallback`)`
 - [x] **Semaine 5 - Jeudi** : Architecture de composants en librairies open-source (égalité référentielle des API publiques, isolation state d'affichage/données métier, audit des anti-patterns `\key`/`useMemo`)
-- [x] **Semaine 5 - Vendredi** : *À venir*
+- [x] **Semaine 5 - Vendredi** : Synthèse théorique S2-S4 (Context API, Custom Hooks, `\useReducer`, pureté/immutabilité) + auto-évaluation méthode Feynman
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
