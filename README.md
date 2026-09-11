@@ -140,8 +140,15 @@ learn-react/
 | ⬇️ Moving state down | Rapprocher un useState de son seul consommateur pour réduire la zone d'impact d'un re-rendu |
 | ⬆️ Lifting content up (children) | Passer un enfant coûteux en children pour l'isoler du re-rendu du parent, sans mémoïsation |
 | 🧭 Ordre de décision performance | Profiler → restructurer l'arbre → mémoïser seulement en dernier recours |
-| 🔗 dispatch comme dépendance stable | La référence de dispatch (useReducer) ne change jamais - dépendance idéale pour un useCallback figé
-| 🎯 Callback paramétré par id | Une seule fonction mémoïsée (toggle(id)) sert toute une liste, au lieu d'une closure par élément
+| 🔗 dispatch comme dépendance stable | La référence de dispatch (useReducer) ne change jamais - dépendance idéale pour un useCallback figé |
+| 🎯 Callback paramétré par id | Une seule fonction mémoïsée (toggle(id)) sert toute une liste, au lieu d'une closure par élément |
+| 📜 Contrat de référence stable (API publique) | Une fonction exportée par un Hook/librairie doit rester stable tant que sa logique ne change pas - contrat testable au même titre qu'un type |
+| 🧩 Isolation state d'affichage / données métier | Séparer sélection, thème, UI locale des données métier dans des Contextes distincts pour éviter les recalculs croisés |
+| 🔑 Anti-pattern key={index} | Une clé instable sur liste dynamique casse l'identité du composant pour React et invalide React.memo (état interne corrompu) |
+| 🕳️ Dépendance manquante (useMemo) | Provoque une "fuite de rendu" : l'UI affiche une valeur mémoïsée obsolète (stale closure)
+| 🌀 Dépendance instable (useMemo) | Un objet/tableau recréé à chaque rendu invalide systématiquement la mémoïsation — overhead sans bénéfice |
+| 🧠 Closure trop large | Dépendre d'un objet conteneur entier retient inutilement en mémoire des données non utilisées par le calcul mémoïsé |
+| 🔍 Grille d'audit React | Méthode systématique pour relier un symptôme (état perdu, données obsolètes, boucle d'effet) à sa cause dans le code |
 
 ---
 
@@ -165,12 +172,13 @@ learn-react/
 - [x] **Semaine 4 - Lundi** : `useReducer` & fonctions pures (reducer, dispatch, intégration Context API)
 - [x] **Semaine 4 - Mardi** : Mini-projet Panier complet géré par reducer (extensibilité, Pattern Command, persistance découplée)
 - [x] **Semaine 4 - Mercredi** : Motifs de performance (`React.memo`, `useCallback`, `useMemo`) & synergie architecturale
-- [ ] **Semaine 4 - Jeudi** : Lecture & audit de code d'un reducer réel (namespacing, machine à états, normalisation, code review)
-- [ ] **Semaine 4 - Vendredi** : Validation Feynman + Bilan de compétences global (Semaines 1 à 4)
-- [ ] **Semaine 5 - Lundi** : `useMemo` vs `useCallback` (égalité référentielle, overhead, cas d'usage de production)
-- [ ] **Semaine 5 - Mardi** : Mardi** : Profiling de performance (API `<Profiler>`, React DevTools, diagnostic des re-rendus superflus, moving state down / lifting content up)`
-[x] **Semaine 5 - Mercredi** : Refactoring de performance TodoApp (isolation `\TodoItem` via `React.memo`, mémorisation conjointe `useReducer` + `useCallback`)`
-[ ] **Semaine 5 - Jeudi** : *À venir*
+- [x] **Semaine 4 - Jeudi** : Lecture & audit de code d'un reducer réel (namespacing, machine à états, normalisation, code review)
+- [x] **Semaine 4 - Vendredi** : Validation Feynman + Bilan de compétences global (Semaines 1 à 4)
+- [x] **Semaine 5 - Lundi** : `useMemo` vs `useCallback` (égalité référentielle, overhead, cas d'usage de production)
+- [x] **Semaine 5 - Mardi** : Mardi** : Profiling de performance (API `<Profiler>`, React DevTools, diagnostic des re-rendus superflus, moving state down / lifting content up)`
+- [x] **Semaine 5 - Mercredi** : Refactoring de performance TodoApp (isolation `\TodoItem` via `React.memo`, mémorisation conjointe `useReducer` + `useCallback`)`
+- [x] **Semaine 5 - Jeudi** : Architecture de composants en librairies open-source (égalité référentielle des API publiques, isolation state d'affichage/données métier, audit des anti-patterns `\key`/`useMemo`)
+- [x] **Semaine 5 - Vendredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
