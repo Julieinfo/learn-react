@@ -131,8 +131,17 @@ learn-react/
 | 🎯 **Dépendances ciblées** | `useEffect`/`useMemo` doivent dépendre de la sous-branche précise de l'état, pas de l'objet complet |
 | 🧩 **Séparation UI/données** | Un filtre d'affichage (non-undoable) reste hors du reducer dédié aux données métier |
 | ⚖️ **useMemo vs useCallback** | `useMemo` mémorise une valeur, `useCallback` mémorise une référence de fonction (`useCallback(fn, deps)` ≡ `useMemo(() => fn, deps)`) |
-| 💸 **Overhead de mémoïsation** | Chaque Hook a un coût de comparaison/stockage — à n'utiliser que si le bénéfice le justifie réellement |
+| 💸 **Overhead de mémoïsation** | Chaque Hook a un coût de comparaison/stockage - à n'utiliser que si le bénéfice le justifie réellement |
 | 🔗 **Synergie useCallback + React.memo** | `useCallback` n'a d'effet que si un composant enfant mémoïsé exploite réellement la stabilité de référence |
+| 📈 API <Profiler> | onRender(id, phase, actualDuration, baseDuration, ...) - mesure objective d'un rendu avant toute optimisation |
+| 🔥 Flamegraph / Ranked chart | Localiser visuellement le composant coûteux dans un commit, prioriser par durée |
+| 📊 Colonnes temporelles (DevTools) | Repérer un commit anormal dans une session avant d'investiguer en détail |
+| 🌊 Propagation descendante des re-rendus | Un composant se re-render par défaut si son parent se re-render, indépendamment de l'utilité |
+| ⬇️ Moving state down | Rapprocher un useState de son seul consommateur pour réduire la zone d'impact d'un re-rendu |
+| ⬆️ Lifting content up (children) | Passer un enfant coûteux en children pour l'isoler du re-rendu du parent, sans mémoïsation |
+| 🧭 Ordre de décision performance | Profiler → restructurer l'arbre → mémoïser seulement en dernier recours |
+| 🔗 dispatch comme dépendance stable | La référence de dispatch (useReducer) ne change jamais - dépendance idéale pour un useCallback figé
+| 🎯 Callback paramétré par id | Une seule fonction mémoïsée (toggle(id)) sert toute une liste, au lieu d'une closure par élément
 
 ---
 
@@ -159,7 +168,9 @@ learn-react/
 - [ ] **Semaine 4 - Jeudi** : Lecture & audit de code d'un reducer réel (namespacing, machine à états, normalisation, code review)
 - [ ] **Semaine 4 - Vendredi** : Validation Feynman + Bilan de compétences global (Semaines 1 à 4)
 - [ ] **Semaine 5 - Lundi** : `useMemo` vs `useCallback` (égalité référentielle, overhead, cas d'usage de production)
-- [ ] **Semaine 5 - Mardi** : *À venir*
+- [ ] **Semaine 5 - Mardi** : Mardi** : Profiling de performance (API `<Profiler>`, React DevTools, diagnostic des re-rendus superflus, moving state down / lifting content up)`
+[x] **Semaine 5 - Mercredi** : Refactoring de performance TodoApp (isolation `\TodoItem` via `React.memo`, mémorisation conjointe `useReducer` + `useCallback`)`
+[ ] **Semaine 5 - Jeudi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
