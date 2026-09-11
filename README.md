@@ -145,10 +145,16 @@ learn-react/
 | 📜 Contrat de référence stable (API publique) | Une fonction exportée par un Hook/librairie doit rester stable tant que sa logique ne change pas - contrat testable au même titre qu'un type |
 | 🧩 Isolation state d'affichage / données métier | Séparer sélection, thème, UI locale des données métier dans des Contextes distincts pour éviter les recalculs croisés |
 | 🔑 Anti-pattern key={index} | Une clé instable sur liste dynamique casse l'identité du composant pour React et invalide React.memo (état interne corrompu) |
-| 🕳️ Dépendance manquante (useMemo) | Provoque une "fuite de rendu" : l'UI affiche une valeur mémoïsée obsolète (stale closure)
-| 🌀 Dépendance instable (useMemo) | Un objet/tableau recréé à chaque rendu invalide systématiquement la mémoïsation — overhead sans bénéfice |
+| 🕳️ Dépendance manquante (useMemo) | Provoque une "fuite de rendu" : l'UI affiche une valeur mémoïsée obsolète (stale closure) |
+| 🌀 Dépendance instable (useMemo) | Un objet/tableau recréé à chaque rendu invalide systématiquement la mémoïsation - overhead sans bénéfice |
 | 🧠 Closure trop large | Dépendre d'un objet conteneur entier retient inutilement en mémoire des données non utilisées par le calcul mémoïsé |
 | 🔍 Grille d'audit React | Méthode systématique pour relier un symptôme (état perdu, données obsolètes, boucle d'effet) à sa cause dans le code |
+| 🧭 Context vs Custom Hook vs Reducer | Trois outils complémentaires et non substituables : distribution, réutilisation de logique, centralisation des transitions
+| 🔁 Custom Hook = logique réutilisée, pas state partagé | Chaque appel d'un Custom Hook crée une instance de state indépendante ; seul un Context partage réellement une valeur |
+| 🧼 Fonction pure (reducer) | Même résultat pour les mêmes arguments, sans mutation ni effet de bord - condition de prévisibilité |
+| 🧊 Immutabilité comme pilier de performance | Garantit que changement de référence ⇔ changement de contenu réel, condition d'exactitude de toute la mémoïsation (React.memo/useMemo/useCallback) |
+| 🎙️ Méthode Feynman | Expliquer un concept sans jargon non justifié pour révéler les zones de compréhension incomplète |
+| 📋 Grille d'évaluation architecture React | Outil de relecture systématique (localisation du state, pureté, stabilité, granularité de Context, clés, dépendances, mémoïsation mesurée) |
 
 ---
 
