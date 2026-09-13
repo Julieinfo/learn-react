@@ -16,6 +16,7 @@ import { useState } from 'react';
 import TodoApp from './components/TodoApp';
 import GestionProduits from './components/GestionProduits';
 import CompteurProfiler from './components/CompteurProfiler';
+import DashboardS5 from './components/ProjetIntegrateurS5';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -97,10 +98,13 @@ function App() {
       {/* Section 3 : Compteur avec Profiler */}
       <CompteurProfiler />
 
-      {/* Section 4 : Gestion des Produits */}
+      {/* Section 4 : Dashboard intégrateur S5 */}
+      <DashboardS5 />
+
+      {/* Section 5 : Gestion des Produits */}
       <GestionProduits />
 
-      {/* Section 5 : Boutique & Panier */}
+      {/* Section 6 : Boutique & Panier */}
       <Conteneur>
         <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
           🛒 Application Demo React
