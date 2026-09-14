@@ -2,8 +2,8 @@
 
 > 📚 **Projet fil rouge évolutif** — Ce dépôt retrace mon apprentissage de React au fil de mes cours. Chaque module ajoute de nouvelles fonctionnalités et de nouveaux concepts à une application de panier d'achat, développée pas à pas.
 
-![React](https://img.shields.io/badge/React-18-61DAFB?logo=react&logoColor=white&style=flat-square)
-![Vite](https://img.shields.io/badge/Vite-5-646CFF?logo=vite&logoColor=white&style=flat-square)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react&logoColor=white&style=flat-square)
+![Vite](https://img.shields.io/badge/Vite-8-646CFF?logo=vite&logoColor=white&style=flat-square)
 ![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript&logoColor=black&style=flat-square)
 ![Status](https://img.shields.io/badge/Statut-En%20cours%20d'apprentissage-16A3B0?style=flat-square)
 
@@ -32,11 +32,20 @@
 - 👁️ Rendu conditionnel : message "panier vide" et bloc total masqué/affiché selon l'état
 - 🔒 Formulaire d'inscription avec validation dynamique du mot de passe (`useEffect`)
 - ⏱️ Debounce sur la validation (email/mot de passe) via un Custom Hook `useDebounce`
-- 🔎 Recherche de produits en temps réel connectée à l'API DummyJSON (`RechercheProduits.jsx`)
+- 🔎 Composant de recherche de produits connecté à l'API DummyJSON (`RechercheProduits.jsx`, disponible mais non monté dans `App.jsx`)
 - 🎨 Thème clair/sombre persistant (localStorage) via la Context API (`ThemeContext.jsx`, `BoutonTheme.jsx`)
 - 🧠 Logique du panier extraite dans un Custom Hook dédié (`usePanier`)
 - 🛒 Panier migré en Context API (`CartContext.jsx`), persistant via `JSON.stringify`/`JSON.parse` sécurisé
 - ⏪ Todo App avancée avec fonctionnalité Undo (annuler) via historique `past`/`present`
+- 🧩 Gestion complète des produits (CRUD) avec `useReducer` et persistance JSON sécurisée
+- 🏗️ Architecture optimisée pour la performance : `React.memo`, `useCallback`, `useMemo` et synergie Context/Reducer/Mémoïsation
+- 📊 Mesure des performances avec l'API React `<Profiler>` dans `CompteurProfiler.jsx` et `ProjetIntegrateurS5.jsx`
+- 🔬 Dashboard intégrateur avec recherche, filtre par catégorie, total et moyenne calculés via `useMemo`
+- 🧩 Pattern Compound Components avec `Accordion`, contexte interne et sous-composants `Item`, `Header` et `Content`
+- 🎛️ Accordéon à ouverture exclusive avec élément ouvert par défaut et rendu conditionnel du contenu
+- 🎨 Interface responsive avec grille de modules, cartes uniformes et catalogue produit en grille
+- 🧪 Audit de code réel : noms d'actions, machine à états finis, normalisation des données, code review
+- 🎯 Auto-évaluation de ma compréhension via la méthode Feynman (expliquer un concept sans jargon pour révéler les zones de compréhension incomplète)
 
 ---
 
@@ -45,23 +54,27 @@
 ```
 learn-react/
 ├── src/
+│   ├── assets/                  # Ressources statiques utilisées par l'application
 │   ├── components/              # Composants UI réutilisables
 │   │   ├── CarteProduit.jsx     # Composant : affichage d'un produit
 │   │   ├── Conteneur.jsx        # Composant wrapper : adapte son style au thème via useTheme
 │   │   ├── FormulaireInscription.jsx  # Composant : formulaire d'inscription avec validation
 │   │   ├── BoutonTheme.jsx      # Composant : bascule le thème via useTheme
-│   │   └── RechercheProduits.jsx # Composant : recherche produits (API DummyJSON)
-|   |   └── TodoApp.jsx              # Composant : gestionnaire de tâches avec Undo
-|   |   └── GesstionProduits.jsx # Composant : gestion des produits (CRUD)
+│   │   ├── RechercheProduits.jsx # Composant : recherche produits (API DummyJSON, non monté dans App)
+│   │   ├── TodoApp.jsx          # Composant : gestionnaire de tâches avec Undo
+│   │   ├── GestionProduits.jsx  # Composant : gestion des produits (CRUD)
+│   │   ├── CompteurProfiler.jsx # Composant : compteur et mesure avec React Profiler
+│   │   ├── ProjetIntegrateurS5.jsx # Dashboard : filtres, métriques et mémoïsation
+│   │   └── Accordion.jsx        # Compound Component : accordéon avec état partagé
 │   ├── context/                 # Contextes React (état global transversal)
 │   │   └── ThemeContext.jsx     # Contexte : ThemeProvider + hook useTheme
 │   │   └── CartContext.jsx      # Contexte : CartProvider + hook useCart
 │   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
-│   │   └── useDebounce.jsx      # Hook : temporisation des valeurs saisies
-        └── usePanier.js         # State + handlers + données dérivées du panier
-    |── reducers/                # Reducers pour useReducer (logique métier pure)
-        |   └── panierReducer.js      # Reducer : transitions d'état du panier
-        └── todoReducer.js       # Reducer avec historique past/present, pattern Undo
+│   │   ├── useDebounce.jsx      # Hook : temporisation des valeurs saisies
+│   │   └── usePanier.js         # State + handlers + données dérivées du panier
+│   ├── reducers/                # Reducers pour useReducer (logique métier pure)
+│   │   ├── panierReducer.js     # Reducer : transitions d'état du panier
+│   │   └── todoReducer.js       # Reducer avec historique past/present, pattern Undo
 │   ├── App.jsx                  # Composant racine : dédié au rendu, consomme useCart()
 │   ├── App.css                  # Styles du composant App
 │   ├── index.css                # Styles globaux
@@ -155,6 +168,16 @@ learn-react/
 | 🧊 Immutabilité comme pilier de performance | Garantit que changement de référence ⇔ changement de contenu réel, condition d'exactitude de toute la mémoïsation (React.memo/useMemo/useCallback) |
 | 🎙️ Méthode Feynman | Expliquer un concept sans jargon non justifié pour révéler les zones de compréhension incomplète |
 | 📋 Grille d'évaluation architecture React | Outil de relecture systématique (localisation du state, pureté, stabilité, granularité de Context, clés, dépendances, mémoïsation mesurée) |
+| 🧩 Compound Components | Des sous-composants collaborent via un état partagé implicite, sans props explicites entre eux (ex. Tabs.Onglet/Tabs.Panneau) |
+| 🎭 Context interne non exposé | Le composant racine distribue l'état via un Context privé à la librairie, consommé par un Hook interne (useTabsContext) |
+| 🧱 Découplage structure/logique | La librairie impose le comportement (un seul actif à la fois) mais laisse l'utilisateur libre de la structure DOM |
+| ⚖️ Compound Components vs props de configuration | Une API à props d'options croît indéfiniment avec chaque personnalisation ; la composition JSX absorbe les nouveaux besoins sans modifier l'existant |
+| 🧬 API composée par propriétés statiques | Attacher `Accordion.Item`, `Accordion.Header` et `Accordion.Content` au composant principal crée une API déclarative et lisible |
+| 🧩 `React.Children.map()` et `React.cloneElement()` | Parcourir les enfants et leur injecter implicitement `itemId` permet aux sous-composants de collaborer sans prop-drilling depuis l'appelant |
+| 📈 API React `<Profiler>` | Mesurer la phase (`mount`/`update`) et `actualDuration` fournit des données concrètes avant d'optimiser un rendu |
+| 🔬 Dashboard de données dérivées | Combiner `filter()`, `reduce()` et `useMemo()` permet de filtrer des données et de calculer total/moyenne avec un recalcul ciblé |
+| 🎛️ État exclusif | Stocker un seul `openId` garantit qu'un seul panneau de l'Accordion est ouvert à la fois et permet de le fermer au second clic |
+| 🖥️ CSS responsive global | Utiliser une grille CSS, des variables et des media queries harmonise les cartes et adapte le catalogue aux écrans plus petits |
 
 ---
 
@@ -185,6 +208,8 @@ learn-react/
 - [x] **Semaine 5 - Mercredi** : Refactoring de performance TodoApp (isolation `\TodoItem` via `React.memo`, mémorisation conjointe `useReducer` + `useCallback`)`
 - [x] **Semaine 5 - Jeudi** : Architecture de composants en librairies open-source (égalité référentielle des API publiques, isolation state d'affichage/données métier, audit des anti-patterns `\key`/`useMemo`)
 - [x] **Semaine 5 - Vendredi** : Synthèse théorique S2-S4 (Context API, Custom Hooks, `\useReducer`, pureté/immutabilité) + auto-évaluation méthode Feynman
+- [x] **Semaine 6 - Lundi** : Design pattern Compound Components (partage d'état implicite via Context, flexibilité déclarative, comparatif vs API monolithique)
+[ ] **Semaine 6 - Mardi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 

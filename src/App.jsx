@@ -73,7 +73,7 @@ function App() {
   // 🎨 RENDU JSX
   // --------------------------------------------------------------------------
   return (
-    <div style={appStyle}>
+    <div style={appStyle} data-theme={theme}>
       <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
         <BoutonTheme />
       </header>
