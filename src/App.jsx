@@ -17,6 +17,7 @@ import TodoApp from './components/TodoApp';
 import GestionProduits from './components/GestionProduits';
 import CompteurProfiler from './components/CompteurProfiler';
 import DashboardS5 from './components/ProjetIntegrateurS5';
+import { Accordion } from './components/Accordion';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -101,10 +102,36 @@ function App() {
       {/* Section 4 : Dashboard intégrateur S5 */}
       <DashboardS5 />
 
-      {/* Section 5 : Gestion des Produits */}
+      {/* Section 5 : Démonstration du pattern Compound Components */}
+      <section style={{ marginBottom: '30px' }}>
+        <h2>Composition avancée : Accordion</h2>
+        <p>
+          Les compound components permettent de partager un état entre un
+          composant parent et ses enfants sans prop-drilling explicite.
+        </p>
+        <Accordion defaultOpenId="patterns">
+          <Accordion.Item id="patterns">
+            <Accordion.Header>Section 1 : Design Patterns</Accordion.Header>
+            <Accordion.Content>
+              Les compound components permettent de créer des composants
+              déclaratifs et flexibles.
+            </Accordion.Content>
+          </Accordion.Item>
+
+          <Accordion.Item id="advantages">
+            <Accordion.Header>Section 2 : Avantages</Accordion.Header>
+            <Accordion.Content>
+              L'état est partagé de façon transparente sans prop-drilling
+              explicite depuis l'extérieur.
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion>
+      </section>
+
+      {/* Section 6 : Gestion des Produits */}
       <GestionProduits />
 
-      {/* Section 6 : Boutique & Panier */}
+      {/* Section 7 : Boutique & Panier */}
       <Conteneur>
         <h1 style={{ textAlign: 'center', marginBottom: '30px' }}>
           🛒 Application Demo React
