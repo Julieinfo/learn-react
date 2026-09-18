@@ -178,6 +178,12 @@ learn-react/
 | 🔬 Dashboard de données dérivées | Combiner `filter()`, `reduce()` et `useMemo()` permet de filtrer des données et de calculer total/moyenne avec un recalcul ciblé |
 | 🎛️ État exclusif | Stocker un seul `openId` garantit qu'un seul panneau de l'Accordion est ouvert à la fois et permet de le fermer au second clic |
 | 🖥️ CSS responsive global | Utiliser une grille CSS, des variables et des media queries harmonise les cartes et adapte le catalogue aux écrans plus petits |
+| 🎛️ Inversion de contrôle (Compound Components) | L'utilisateur contrôle le rendu (structure JSX), le composant ne contrôle que le comportement (état actif) |
+| 🧬 API composée par propriétés statiques | Attacher Tabs.List, Tabs.Tab, Tabs.Panel au composant racine crée un espace de noms explicite et un import unique |
+| 🎯 Portée du Context (local vs global) | Un Context de Compound Component reste local à un ensemble fermé de sous-composants, contrairement à un Context applicatif (ThemeContext) |
+| 🔓 Extensibilité Open/Closed du Context | Ajouter un champ à la value du Context ou un nouveau sous-composant n'impacte pas l'API existante |
+| 🚧 Accessibilité dès la conception | Les rôles ARIA (tablist, tab, tabpanel, aria-selected) font partie du contrat du composant, pas d'un ajout a posteriori |
+| 🗂️ Bonnes pratiques Design System | Context non exporté, value mémoïsée, props minimales sur les sous-composants pour laisser la structure DOM libre |
 
 ---
 
@@ -209,7 +215,8 @@ learn-react/
 - [x] **Semaine 5 - Jeudi** : Architecture de composants en librairies open-source (égalité référentielle des API publiques, isolation state d'affichage/données métier, audit des anti-patterns `\key`/`useMemo`)
 - [x] **Semaine 5 - Vendredi** : Synthèse théorique S2-S4 (Context API, Custom Hooks, `\useReducer`, pureté/immutabilité) + auto-évaluation méthode Feynman
 - [x] **Semaine 6 - Lundi** : Design pattern Compound Components (partage d'état implicite via Context, flexibilité déclarative, comparatif vs API monolithique)
-[ ] **Semaine 6 - Mardi** : *À venir*
+- [x] **Semaine 6 - Mardi** : Mini-projet composant Tabs (Compound Components appliqués, inversion de contrôle, API composée par propriétés statiques, extensibilité Design System)
+- [ ] **Semaine 6 - Mercredi** : *À venir*
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
