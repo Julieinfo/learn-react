@@ -18,6 +18,7 @@ import GestionProduits from './components/GestionProduits';
 import CompteurProfiler from './components/CompteurProfiler';
 import DashboardS5 from './components/ProjetIntegrateurS5';
 import { Accordion } from './components/Accordion';
+import { Tabs } from './components/Tabs';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -130,6 +131,53 @@ function App() {
 
       {/* Section 6 : Gestion des Produits */}
       <GestionProduits />
+
+      {/* Section 7 : Tabs Compound Component */}
+      <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
+        <h2>🧩 Semaine 6 : Composition Avancée</h2>
+
+        <h3>1. Accordion</h3>
+        <Accordion defaultOpenId="1">
+          <Accordion.Item id="1">
+            <Accordion.Header>Section 1 : Design Patterns</Accordion.Header>
+            <Accordion.Content>
+              Les compound components permettent de créer des composants déclaratifs et très flexibles.
+            </Accordion.Content>
+          </Accordion.Item>
+          <Accordion.Item id="2">
+            <Accordion.Header>Section 2 : Avantages</Accordion.Header>
+            <Accordion.Content>
+              L'état est partagé de façon transparente sans prop-drilling explicite depuis l'extérieur.
+            </Accordion.Content>
+          </Accordion.Item>
+        </Accordion>
+
+        <hr style={{ margin: '30px 0' }} />
+
+        <h3>2. Tabs Compound Component</h3>
+        <Tabs defaultTab="react">
+          <Tabs.List>
+            <Tabs.Tab id="react">React</Tabs.Tab>
+            <Tabs.Tab id="vite">Vite</Tabs.Tab>
+            <Tabs.Tab id="js">JavaScript</Tabs.Tab>
+          </Tabs.List>
+
+          <Tabs.Panels>
+            <Tabs.Panel id="react">
+              <h4>React.js</h4>
+              <p>Une bibliothèque pour créer des interfaces utilisateur composables et performantes.</p>
+            </Tabs.Panel>
+            <Tabs.Panel id="vite">
+              <h4>Vite</h4>
+              <p>Un outil de build ultra-rapide pour les projets frontend modernes.</p>
+            </Tabs.Panel>
+            <Tabs.Panel id="js">
+              <h4>JavaScript</h4>
+              <p>Le langage du Web, à la base de tout l'écosystème moderne.</p>
+            </Tabs.Panel>
+          </Tabs.Panels>
+        </Tabs>
+      </div>
 
       {/* Section 7 : Boutique & Panier */}
       <Conteneur>
