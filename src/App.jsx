@@ -26,6 +26,7 @@ import Semaine4 from './components/weeks/Semaine4';
 import Semaine5 from './components/weeks/Semaine5';
 import Semaine6 from './components/weeks/Semaine6';
 import CompoundSelectDemo from './components/CompoundSelectDemo';
+import ProjetIntegrateurS6 from './components/ProjetIntegrateurS6';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -236,6 +237,12 @@ function App() {
 
         <h3>3. Custom Hook extrait</h3>
         <CompoundSelectDemo />
+
+        <hr style={{ margin: '30px 0' }} />
+
+        <h3>5. Projet Intégrateur S6</h3>
+        <ProjetIntegrateurS6 />
+
       </div>
 
       {/* Section 7 : Boutique & Panier */}
