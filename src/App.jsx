@@ -19,6 +19,12 @@ import CompteurProfiler from './components/CompteurProfiler';
 import DashboardS5 from './components/ProjetIntegrateurS5';
 import { Accordion } from './components/Accordion';
 import { Tabs } from './components/Tabs';
+import Semaine1 from './components/weeks/Semaine1';
+import Semaine2 from './components/weeks/Semaine2';
+import Semaine3 from './components/weeks/Semaine3';
+import Semaine4 from './components/weeks/Semaine4';
+import Semaine5 from './components/weeks/Semaine5';
+import Semaine6 from './components/weeks/Semaine6';
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -73,6 +79,53 @@ function App() {
   // --------------------------------------------------------------------------
   // 🎨 RENDU JSX
   // --------------------------------------------------------------------------
+  const weekOneProps = {
+    produitsFiltres,
+    filtreActif,
+    totalPanier,
+    reduction,
+    totalArticles,
+    codePromo,
+    setFiltreActif,
+    ajouterQuantite,
+    diminuerQuantite,
+    viderPanier,
+    handleValidationPromo,
+    setCodePromo
+  };
+
+  return (
+    <div style={appStyle} data-theme={theme}>
+      <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
+        <BoutonTheme />
+      </header>
+
+      <section className="weeks-navigation" aria-label="Navigation par semaine">
+        <h1>📚 learn-react : parcours par semaine</h1>
+        <p>Sélectionne une semaine pour retrouver les exercices et composants associés.</p>
+        <Tabs defaultTab="week-1">
+          <Tabs.List>
+            <Tabs.Tab id="week-1">Semaine 1</Tabs.Tab>
+            <Tabs.Tab id="week-2">Semaine 2</Tabs.Tab>
+            <Tabs.Tab id="week-3">Semaine 3</Tabs.Tab>
+            <Tabs.Tab id="week-4">Semaine 4</Tabs.Tab>
+            <Tabs.Tab id="week-5">Semaine 5</Tabs.Tab>
+            <Tabs.Tab id="week-6">Semaine 6</Tabs.Tab>
+          </Tabs.List>
+          <Tabs.Panels>
+            <Tabs.Panel id="week-1"><Semaine1 {...weekOneProps} /></Tabs.Panel>
+            <Tabs.Panel id="week-2"><Semaine2 /></Tabs.Panel>
+            <Tabs.Panel id="week-3"><Semaine3 /></Tabs.Panel>
+            <Tabs.Panel id="week-4"><Semaine4 /></Tabs.Panel>
+            <Tabs.Panel id="week-5"><Semaine5 /></Tabs.Panel>
+            <Tabs.Panel id="week-6"><Semaine6 /></Tabs.Panel>
+          </Tabs.Panels>
+        </Tabs>
+      </section>
+    </div>
+  );
+
+  // Rendu historique conservé ci-dessous conformément à la structure initiale.
   return (
     <div style={appStyle} data-theme={theme}>
       <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>

@@ -199,6 +199,119 @@ body {
   cursor: not-allowed;
 }
 
+.weeks-navigation {
+  grid-column: 1 / -1;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+.weeks-navigation > p {
+  margin-bottom: 20px;
+}
+
+.weeks-navigation [role='tablist'] {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 6px;
+  overflow-x: auto;
+}
+
+.weeks-navigation [role='tab'] {
+  min-width: 110px;
+  white-space: nowrap;
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 860px);
+  justify-content: center;
+  gap: 20px;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+.week-card {
+  min-width: 0;
+  width: 100%;
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(23, 43, 77, 0.06);
+}
+
+[data-theme='dark'] .week-card {
+  background: #242b36;
+  border-color: #3b4858;
+}
+
+.catalogue-filters,
+.promo-form,
+.cart-summary {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.week-grid > .week-card,
+.week-grid > div {
+  text-align: center;
+}
+
+.week-grid > div[style] {
+  width: 100% !important;
+  max-width: 860px !important;
+  margin: 0 auto !important;
+  box-sizing: border-box;
+}
+
+.week-grid > div[style] form,
+.week-grid > div[style] form > input,
+.week-grid > div[style] form > button {
+  min-width: 0;
+}
+
+.week-grid > div[style] form {
+  flex-wrap: wrap;
+}
+
+.week-grid > div[style] form > input {
+  flex: 1 1 180px;
+}
+
+.week-grid > div[style] > div {
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px !important;
+}
+
+.promo-form input {
+  flex: 1 1 180px;
+}
+
+@media (max-width: 900px) {
+  .week-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .weeks-navigation [role='tablist'] {
+    display: flex;
+    padding-bottom: 6px;
+  }
+}
+
+@media (max-width: 560px) {
+  .week-card {
+    padding: 14px;
+  }
+}
+
 /* Product cards: the catalogue's list container becomes a responsive grid. */
 #root > div > div:last-child > div > div:nth-of-type(2) {
   display: grid !important;
@@ -301,4 +414,105 @@ code {
   line-height: 135%;
   padding: 4px 8px;
   background: var(--code-bg);
+}
+
+/* Responsive guardrails for nested exercises and dashboard cards. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video {
+  max-width: 100%;
+  height: auto;
+}
+
+.weeks-navigation > div {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+}
+
+.week-card {
+  overflow: hidden;
+}
+
+.week-card > main {
+  width: 100% !important;
+  max-width: none !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+.week-card > main h1 {
+  max-width: 100%;
+  margin: 0 0 18px !important;
+  font-size: clamp(1.65rem, 4vw, 2.4rem) !important;
+  overflow-wrap: anywhere;
+}
+
+.week-card > main > input,
+.week-card > main > select {
+  display: block;
+  width: 100% !important;
+  max-width: 100%;
+  margin: 8px 0;
+}
+
+.week-card > main > button {
+  max-width: 100%;
+  white-space: normal;
+}
+
+.week-card > main > div {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-width: 0;
+  margin-top: 10px;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.week-card > main > div strong,
+.week-card > main > div span {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.week-card > main > div strong {
+  flex: 1 1 180px;
+  text-align: left;
+}
+
+.week-card > main > div button {
+  white-space: nowrap;
+}
+
+@media (max-width: 560px) {
+  .week-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .week-card > main > div {
+    align-items: center;
+  }
+
+  .week-card > main > div span {
+    font-size: 0.9rem;
+  }
+
+  .week-card > main > div button {
+    flex: 0 0 auto;
+  }
 }
