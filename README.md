@@ -43,6 +43,11 @@
 - 🔬 Dashboard intégrateur avec recherche, filtre par catégorie, total et moyenne calculés via `useMemo`
 - 🧩 Pattern Compound Components avec `Accordion`, contexte interne et sous-composants `Item`, `Header` et `Content`
 - 🎛️ Accordéon à ouverture exclusive avec élément ouvert par défaut et rendu conditionnel du contenu
+- 📑 Navigation par onglets des exercices de la Semaine 1 à la Semaine 6 avec le Compound Component `Tabs`
+- 🪝 Custom Hook `useCompoundSelect` pour gérer une sélection réutilisable avec option de désélection
+- 🧩 Démonstration `CompoundSelectDemo` : sélection d'options et propagation de l'état sélectionné
+- 🪟 `FormModal` composé avec `Header`, `Body` et `Footer`, contexte interne et fermeture contrôlée
+- 👤 Projet intégrateur S6 : formulaire utilisateur dans une modal avec validation et état local
 - 🎨 Interface responsive avec grille de modules, cartes uniformes et catalogue produit en grille
 - 🧪 Audit de code réel : noms d'actions, machine à états finis, normalisation des données, code review
 - 🎯 Auto-évaluation de ma compréhension via la méthode Feynman (expliquer un concept sans jargon pour révéler les zones de compréhension incomplète)
@@ -65,12 +70,24 @@ learn-react/
 │   │   ├── GestionProduits.jsx  # Composant : gestion des produits (CRUD)
 │   │   ├── CompteurProfiler.jsx # Composant : compteur et mesure avec React Profiler
 │   │   ├── ProjetIntegrateurS5.jsx # Dashboard : filtres, métriques et mémoïsation
-│   │   └── Accordion.jsx        # Compound Component : accordéon avec état partagé
+│   │   ├── ProjetIntegrateurS6.jsx # Projet : formulaire utilisateur dans une modal composée
+│   │   ├── CompoundSelectDemo.jsx # Démonstration du Custom Hook de sélection
+│   │   ├── FormModal.jsx         # Compound Component : modal Header/Body/Footer
+│   │   ├── Accordion.jsx          # Compound Component : accordéon avec état partagé
+│   │   ├── Tabs.jsx               # Compound Component : onglets List/Tab/Panels/Panel
+│   │   └── weeks/                 # Wrappers d'affichage organisés par semaine
+│   │       ├── Semaine1.jsx       # Panier et formulaire d'inscription
+│   │       ├── Semaine2.jsx       # Recherche API et debounce
+│   │       ├── Semaine3.jsx       # Context API et thème
+│   │       ├── Semaine4.jsx       # Todo et gestion CRUD
+│   │       ├── Semaine5.jsx       # Profiler et optimisation
+│   │       └── Semaine6.jsx       # Accordion, Tabs, Select et modal
 │   ├── context/                 # Contextes React (état global transversal)
 │   │   └── ThemeContext.jsx     # Contexte : ThemeProvider + hook useTheme
 │   │   └── CartContext.jsx      # Contexte : CartProvider + hook useCart
 │   ├── hooks/                   # Hooks React personnalisés (Custom Hooks)
 │   │   ├── useDebounce.jsx      # Hook : temporisation des valeurs saisies
+│   │   ├── useCompoundSelect.js  # Hook : sélection réutilisable et toggle
 │   │   └── usePanier.js         # State + handlers + données dérivées du panier
 │   ├── reducers/                # Reducers pour useReducer (logique métier pure)
 │   │   ├── panierReducer.js     # Reducer : transitions d'état du panier
@@ -184,6 +201,13 @@ learn-react/
 | 🔓 Extensibilité Open/Closed du Context | Ajouter un champ à la value du Context ou un nouveau sous-composant n'impacte pas l'API existante |
 | 🚧 Accessibilité dès la conception | Les rôles ARIA (tablist, tab, tabpanel, aria-selected) font partie du contrat du composant, pas d'un ajout a posteriori |
 | 🗂️ Bonnes pratiques Design System | Context non exporté, value mémoïsée, props minimales sur les sous-composants pour laisser la structure DOM libre |
+| 🪝 **Custom Hook de sélection** | `useCompoundSelect` encapsule `selectedId`, `select` et `isSelected` pour rendre la logique réutilisable |
+| 🔁 **Option de toggle** | Le paramètre `allowToggle` permet de désélectionner l'élément déjà actif sans dupliquer la logique dans l'interface |
+| 📑 **Tabs composé** | `Tabs.List`, `Tabs.Tab`, `Tabs.Panels` et `Tabs.Panel` partagent l'onglet actif via un Context local |
+| 🪟 **Modal composée** | `FormModal.Header`, `FormModal.Body` et `FormModal.Footer` composent une fenêtre contrôlée par `isOpen` et `onClose` |
+| 🧾 **Formulaire contrôlé dans une modal** | `formData` est synchronisé avec les champs, puis réinitialisé après soumission via le handler parent |
+| 🗂️ **Composition par wrappers** | Les composants existants sont regroupés par semaine dans `components/weeks` sans déplacer leur logique métier |
+| 🧭 **Navigation pédagogique par onglets** | Un seul panneau hebdomadaire est rendu à la fois, ce qui organise l'application sans multiplier les pages |
 
 ---
 
@@ -216,7 +240,9 @@ learn-react/
 - [x] **Semaine 5 - Vendredi** : Synthèse théorique S2-S4 (Context API, Custom Hooks, `\useReducer`, pureté/immutabilité) + auto-évaluation méthode Feynman
 - [x] **Semaine 6 - Lundi** : Design pattern Compound Components (partage d'état implicite via Context, flexibilité déclarative, comparatif vs API monolithique)
 - [x] **Semaine 6 - Mardi** : Mini-projet composant Tabs (Compound Components appliqués, inversion de contrôle, API composée par propriétés statiques, extensibilité Design System)
-- [ ] **Semaine 6 - Mercredi** : *À venir*
+- [x] **Semaine 6 - Mercredi** : Extraction d'un Custom Hook `useCompoundSelect` (sélection, toggle optionnel, callbacks mémoïsés)
+- [x] **Semaine 6 - Jeudi** : Mini-projet Modal composée (FormModal.Header/Body/Footer, contrôle via `isOpen` et `onClose`, formulaire contrôlé avec validation)
+- [x] **Semaine 6 - Vendredi** : Projet intégrateur final
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
