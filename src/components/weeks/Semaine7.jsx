@@ -2,6 +2,7 @@ import React from 'react';
 import ReactQueryDemo from '../ReactQueryDemo';
 import UserListMiniProject from '../UserListMiniProject';
 import SuspenseFetchDemo from '../SuspenseFetchDemo';
+import IntegratorProjectS7 from '../IntegratorProjectS7';
 
 export default function Semaine7() {
   return (
@@ -35,6 +36,16 @@ export default function Semaine7() {
           et intercepte les erreurs de rendu avec un Error Boundary.
         </p>
         <SuspenseFetchDemo />
+      </section>
+
+      <section className="week-card">
+        <h2>🚀 Projet intégrateur S7</h2>
+        <h3>4. Dashboard TanStack Query (Samedi)</h3>
+        <p>
+          Combinaison des queries, mutations, invalidation du cache et Query
+          Key Factory dans un gestionnaire de posts complet.
+        </p>
+        <IntegratorProjectS7 />
       </section>
     </div>
   );
