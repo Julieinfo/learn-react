@@ -243,8 +243,14 @@ learn-react/
 - [x] **Semaine 6 - Mercredi** : Extraction d'un Custom Hook `useCompoundSelect` (sélection, toggle optionnel, callbacks mémoïsés)
 - [x] **Semaine 6 - Jeudi** : Mini-projet Modal composée (FormModal.Header/Body/Footer, contrôle via `isOpen` et `onClose`, formulaire contrôlé avec validation)
 - [x] **Semaine 6 - Vendredi** : Projet intégrateur final
+- [x] **Semaine 7 - Lundi** : React Query (queries, cache, fraîcheur des données et invalidation)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
+
+## 📌 Semaine 7 — Jour 1 (Lundi) : React Query (Queries, Cache & Invalidation)
+- Prise en main de `useQuery` pour la récupération automatisée de données.
+- Compréhension de la mise en cache, du statut `stale` vs `fresh`, et du refetching d'arrière-plan.
+- Utilisation de `useQueryClient` et `invalidateQueries` pour réinitialiser le cache.
 
 ---
 

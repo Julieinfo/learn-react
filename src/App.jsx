@@ -27,6 +27,10 @@ import Semaine5 from './components/weeks/Semaine5';
 import Semaine6 from './components/weeks/Semaine6';
 import CompoundSelectDemo from './components/CompoundSelectDemo';
 import ProjetIntegrateurS6 from './components/ProjetIntegrateurS6';
+import ReactQueryDemo from './components/ReactQueryDemo';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+
+const queryClient = new QueryClient();
 
 const PRODUITS_INITIAUX = [
   { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
@@ -97,7 +101,8 @@ function App() {
   };
 
   return (
-    <div style={appStyle} data-theme={theme}>
+    <QueryClientProvider client={queryClient}>
+      <div style={appStyle} data-theme={theme}>
       <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
         <BoutonTheme />
       </header>
@@ -113,6 +118,7 @@ function App() {
             <Tabs.Tab id="week-4">Semaine 4</Tabs.Tab>
             <Tabs.Tab id="week-5">Semaine 5</Tabs.Tab>
             <Tabs.Tab id="week-6">Semaine 6</Tabs.Tab>
+            <Tabs.Tab id="week-7">Semaine 7</Tabs.Tab>
           </Tabs.List>
           <Tabs.Panels>
             <Tabs.Panel id="week-1"><Semaine1 {...weekOneProps} /></Tabs.Panel>
@@ -121,10 +127,12 @@ function App() {
             <Tabs.Panel id="week-4"><Semaine4 /></Tabs.Panel>
             <Tabs.Panel id="week-5"><Semaine5 /></Tabs.Panel>
             <Tabs.Panel id="week-6"><Semaine6 /></Tabs.Panel>
+            <Tabs.Panel id="week-7"><ReactQueryDemo /></Tabs.Panel>
           </Tabs.Panels>
         </Tabs>
       </section>
-    </div>
+      </div>
+    </QueryClientProvider>
   );
 
   // Rendu historique conservé ci-dessous conformément à la structure initiale.
