@@ -245,6 +245,7 @@ learn-react/
 - [x] **Semaine 6 - Vendredi** : Projet intégrateur final
 - [x] **Semaine 7 - Lundi** : React Query (queries, cache, fraîcheur des données et invalidation)
 - [x] **Semaine 7 - Mardi** : Mini-projet liste utilisateurs (fetching, erreurs, retry et rechargement manuel)
+- [x] **Semaine 7 - Mercredi** : Suspense et Error Boundary (fallback de chargement et récupération après erreur)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -257,6 +258,11 @@ learn-react/
 - Implémentation d'une liste d'utilisateurs avec React Query.
 - Gestion explicite des états `isLoading`, `isError`, `error` et du mécanisme de `refetch`.
 - Mise en place d'un toggle de simulation de panne pour valider la robustesse de l'UI.
+
+## 📌 Semaine 7 — Jour 3 (Mercredi) : Suspense + Error Boundary
+- Utilisation de `Suspense` pour déléguer l'affichage du chargement au composant parent.
+- Création d'un Error Boundary pour intercepter les erreurs et afficher un fallback récupérable.
+- Utilisation de `useSuspenseQuery` avec simulation d'un délai réseau et d'une erreur serveur.
 
 ---
 

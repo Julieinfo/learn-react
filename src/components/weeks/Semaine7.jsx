@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactQueryDemo from '../ReactQueryDemo';
 import UserListMiniProject from '../UserListMiniProject';
+import SuspenseFetchDemo from '../SuspenseFetchDemo';
 
 export default function Semaine7() {
   return (
@@ -24,6 +25,16 @@ export default function Semaine7() {
           avec simulation d'une panne réseau.
         </p>
         <UserListMiniProject />
+      </section>
+
+      <section className="week-card">
+        <h2>🌀 Suspense et Error Boundary</h2>
+        <h3>3. Entrelacement : Suspense + Error Boundary (Mercredi)</h3>
+        <p>
+          Le parent prend en charge le chargement avec <code>Suspense</code>
+          et intercepte les erreurs de rendu avec un Error Boundary.
+        </p>
+        <SuspenseFetchDemo />
       </section>
     </div>
   );
