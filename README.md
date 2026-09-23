@@ -244,6 +244,7 @@ learn-react/
 - [x] **Semaine 6 - Jeudi** : Mini-projet Modal composée (FormModal.Header/Body/Footer, contrôle via `isOpen` et `onClose`, formulaire contrôlé avec validation)
 - [x] **Semaine 6 - Vendredi** : Projet intégrateur final
 - [x] **Semaine 7 - Lundi** : React Query (queries, cache, fraîcheur des données et invalidation)
+- [x] **Semaine 7 - Mardi** : Mini-projet liste utilisateurs (fetching, erreurs, retry et rechargement manuel)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -251,6 +252,11 @@ learn-react/
 - Prise en main de `useQuery` pour la récupération automatisée de données.
 - Compréhension de la mise en cache, du statut `stale` vs `fresh`, et du refetching d'arrière-plan.
 - Utilisation de `useQueryClient` et `invalidateQueries` pour réinitialiser le cache.
+
+## 📌 Semaine 7 — Jour 2 (Mardi) : Mini-projet Fetching & Gestion d'erreurs
+- Implémentation d'une liste d'utilisateurs avec React Query.
+- Gestion explicite des états `isLoading`, `isError`, `error` et du mécanisme de `refetch`.
+- Mise en place d'un toggle de simulation de panne pour valider la robustesse de l'UI.
 
 ---
 

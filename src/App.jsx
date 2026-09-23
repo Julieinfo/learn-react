@@ -25,9 +25,9 @@ import Semaine3 from './components/weeks/Semaine3';
 import Semaine4 from './components/weeks/Semaine4';
 import Semaine5 from './components/weeks/Semaine5';
 import Semaine6 from './components/weeks/Semaine6';
+import Semaine7 from './components/weeks/Semaine7';
 import CompoundSelectDemo from './components/CompoundSelectDemo';
 import ProjetIntegrateurS6 from './components/ProjetIntegrateurS6';
-import ReactQueryDemo from './components/ReactQueryDemo';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 const queryClient = new QueryClient();
@@ -127,7 +127,7 @@ function App() {
             <Tabs.Panel id="week-4"><Semaine4 /></Tabs.Panel>
             <Tabs.Panel id="week-5"><Semaine5 /></Tabs.Panel>
             <Tabs.Panel id="week-6"><Semaine6 /></Tabs.Panel>
-            <Tabs.Panel id="week-7"><ReactQueryDemo /></Tabs.Panel>
+            <Tabs.Panel id="week-7"><Semaine7 /></Tabs.Panel>
           </Tabs.Panels>
         </Tabs>
       </section>
