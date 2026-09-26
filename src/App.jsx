@@ -29,6 +29,10 @@ import Semaine7 from './components/weeks/Semaine7';
 import CompoundSelectDemo from './components/CompoundSelectDemo';
 import ProjetIntegrateurS6 from './components/ProjetIntegrateurS6';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import RootLayout from './layouts/RootLayout';
+import UsersPage, { usersLoader } from './pages/UsersPage';
+import UserDetail, { userDetailLoader } from './pages/UserDetail';
 
 const queryClient = new QueryClient();
 
@@ -38,7 +42,7 @@ const PRODUITS_INITIAUX = [
   { id: 3, nom: 'Clavier Mécanique', description: 'Clavier RGB switch red', prix: 100, quantite: 0 }
 ];
 
-function App() {
+function LearningHome() {
   const { theme } = useTheme();
 
   const appStyle = {
@@ -101,7 +105,6 @@ function App() {
   };
 
   return (
-    <QueryClientProvider client={queryClient}>
       <div style={appStyle} data-theme={theme}>
       <header style={{ marginBottom: '20px', display: 'flex', justifyContent: 'flex-end' }}>
         <BoutonTheme />
@@ -132,7 +135,6 @@ function App() {
         </Tabs>
       </section>
       </div>
-    </QueryClientProvider>
   );
 
   // Rendu historique conservé ci-dessous conformément à la structure initiale.
@@ -368,6 +370,39 @@ function App() {
         </div>
       </Conteneur>
     </div>
+  );
+}
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <LearningHome />
+      },
+      {
+        path: 'users',
+        element: <UsersPage />,
+        loader: usersLoader,
+        children: [
+          {
+            path: ':id',
+            element: <UserDetail />,
+            loader: userDetailLoader
+          }
+        ]
+      }
+    ]
+  }
+]);
+
+function App() {
+  return (
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 

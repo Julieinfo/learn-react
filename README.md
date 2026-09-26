@@ -247,6 +247,7 @@ learn-react/
 - [x] **Semaine 7 - Mardi** : Mini-projet liste utilisateurs (fetching, erreurs, retry et rechargement manuel)
 - [x] **Semaine 7 - Mercredi** : Suspense et Error Boundary (fallback de chargement et récupération après erreur)
 - [x] **Semaine 7 - Samedi** : Projet intégrateur avec `useQuery`, `useMutation`, invalidation et Query Key Factory
+- [x] **Semaine 8 - Lundi** : React Router (routes imbriquées, `Outlet`, loaders et `useLoaderData`)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -269,6 +270,11 @@ learn-react/
 - Assemblage d'un Dashboard d'API interactif avec TanStack Query.
 - Utilisation de `useMutation` avec invalidation automatique (`invalidateQueries`) pour créer et supprimer des posts.
 - Structuration des clés via une Query Key Factory (`postsKeys`).
+
+## 📌 Semaine 8 — Jour 1 (Lundi) : React Router (Routes imbriquées & Loaders)
+- Configuration de `createBrowserRouter` et `RouterProvider`.
+- Utilisation de `Outlet` pour afficher les routes enfants dans une mise en page commune.
+- Chargement déclaratif des utilisateurs et de leurs détails avec `loader` et `useLoaderData`.
 
 ---
 
