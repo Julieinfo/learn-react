@@ -1,3 +1,4 @@
+/* Responsabilité : fournir le fallback des routes inconnues et des erreurs de navigation. */
 import React from 'react';
 import { Link, useRouteError } from 'react-router-dom';
 

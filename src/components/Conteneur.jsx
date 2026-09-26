@@ -1,3 +1,4 @@
+/* Responsabilité : fournir un conteneur de présentation cohérent avec le thème. */
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 

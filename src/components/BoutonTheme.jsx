@@ -1,3 +1,4 @@
+/* Responsabilité : déclencher le changement de thème via le Context dédié. */
 import React from 'react';
 import { useTheme } from '../context/ThemeContext';
 

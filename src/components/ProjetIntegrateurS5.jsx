@@ -1,3 +1,4 @@
+/* Responsabilité : combiner filtrage, métriques dérivées et mesure de performance. */
 import React, { useState, useMemo, useCallback, Profiler } from 'react';
 
 // Item de données optimisé avec React.memo
@@ -38,7 +39,7 @@ const [items] = useState([
 { id: 5, title: 'Optimisation SEO', category: 'Marketing', value: 650 }
 ]);
 
-// 1. USEMEMO : Filtrage et agrégation statistiques
+// Les métriques dérivées évitent un recalcul lorsque les filtres restent stables.
 const metrics = useMemo(() => {
 console.log('[Calcul Heavy] Filtrage & Stats Dashboard');
 const filtered = items.filter((item) => {
@@ -53,7 +54,7 @@ const avg = filtered.length ? total / filtered.length : 0;
 return { filtered, total, avg };
 }, [items, query, category]);
 
-// 2. USECALLBACK : Handlers stables
+// Les handlers stables préservent l'égalité référentielle lors du passage aux enfants.
 const handleSelect = useCallback((id) => {
 setSelectedId(id);
 }, []);

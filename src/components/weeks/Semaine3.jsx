@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices de Context API et de thème. */
 import React from 'react';
 import BoutonTheme from '../BoutonTheme';
 import Conteneur from '../Conteneur';

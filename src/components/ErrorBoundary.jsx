@@ -1,3 +1,4 @@
+/* Responsabilité : isoler les erreurs de rendu et proposer un fallback récupérable. */
 import React from 'react';
 
 export class ErrorBoundary extends React.Component {

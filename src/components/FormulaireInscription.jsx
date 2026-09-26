@@ -8,6 +8,7 @@
  * réagit aux événements utilisateur sans dépendre d'un état global.
  */
 
+/* Responsabilité : gérer un formulaire contrôlé et sa validation différée. */
 import React, { useState } from 'react';
 import useDebounce from '../hooks/useDebounce';
 

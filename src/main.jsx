@@ -1,3 +1,4 @@
+/* Responsabilité : initialiser le runtime React et empiler les Providers globaux. */
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import App from './App.jsx';

@@ -1,3 +1,4 @@
+/* Responsabilité : présenter le parcours Routing, code splitting et PerfApp. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 

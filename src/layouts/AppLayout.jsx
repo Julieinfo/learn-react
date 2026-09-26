@@ -1,3 +1,4 @@
+/* Responsabilité : structurer la PerfApp S8 et mesurer ses phases de rendu. */
 import React, { Profiler } from 'react';
 import { NavLink, Outlet, useNavigation } from 'react-router-dom';
 

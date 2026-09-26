@@ -1,3 +1,7 @@
+/*
+ * Responsabilité unique : composer l'application pédagogique et son arbre de
+ * routes, puis fournir le client TanStack Query au sous-arbre React.
+ */
 import { lazy, Suspense, useState } from 'react';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';

@@ -1,3 +1,4 @@
+/* Responsabilité : démontrer queries, mutations et invalidation d'un cache serveur. */
 import React, { useState } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { postsKeys } from '../api/queryKeys';

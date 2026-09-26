@@ -1,3 +1,4 @@
+/* Responsabilité : partager le thème et synchroniser sa préférence avec le stockage local. */
 import React, { createContext, useState, useEffect, useContext } from 'react';
 
 const ThemeContext = createContext();
@@ -25,5 +26,6 @@ export function ThemeProvider({ children }) {
 }
 
 export function useTheme() {
+    // Le hook centralise l'accès au contexte et évite de propager sa structure interne.
     return useContext(ThemeContext);
 }

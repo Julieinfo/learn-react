@@ -1,3 +1,4 @@
+/* Responsabilité : composer une modal contrôlée avec Header, Body et Footer. */
 import React, { createContext, useContext } from 'react';
 
 // Context interne au composant composé FormModal

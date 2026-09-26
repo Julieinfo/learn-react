@@ -1,3 +1,4 @@
+/* Responsabilité : orchestrer le formulaire utilisateur et sa modal composée. */
 import React, { useState } from 'react';
 import { FormModal } from './FormModal';
 

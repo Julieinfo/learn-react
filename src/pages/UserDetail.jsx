@@ -1,6 +1,8 @@
+/* Responsabilité : afficher le détail d'un utilisateur fourni par le loader. */
 import React from 'react';
 import { useLoaderData } from 'react-router-dom';
 
+// Le paramètre de route détermine la ressource sans faire remonter l'accès réseau dans l'UI.
 export const userDetailLoader = async ({ params }) => {
   const response = await fetch(
     `https://jsonplaceholder.typicode.com/users/${params.id}`

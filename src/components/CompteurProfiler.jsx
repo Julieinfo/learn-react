@@ -1,3 +1,4 @@
+/* Responsabilité : mesurer le coût de rendu d'une zone interactive. */
 import React, { useState, Profiler } from 'react';
 
 // Composant non optimisé qui subit des re-rendus inutiles
@@ -16,7 +17,7 @@ export default function CompteurProfiler() {
   const [compteur, setCompteur] = useState(0);
   const [items] = useState(['Élément 1', 'Élément 2', 'Élément 3']);
 
-  // Callback du Profiler pour mesurer le temps de rendu
+  // Le callback observe le rendu sans modifier l'état fonctionnel de l'application.
   const onRenderCallback = (
     id, // l'identifiant du Profiler
     phase, // "mount" (premier rendu) ou "update" (mise à jour)
@@ -31,7 +32,7 @@ export default function CompteurProfiler() {
       <p>Compteur : {compteur}</p>
       <button onClick={() => setCompteur((c) => c + 1)}>Incrémenter</button>
 
-      {/* Le Profiler englobe la zone à analyser */}
+      {/* Seule la zone étudiée est instrumentée pour garder la mesure exploitable. */}
       <Profiler id="ZoneListeLourde" onRender={onRenderCallback}>
         <ListeLourde items={items} />
       </Profiler>

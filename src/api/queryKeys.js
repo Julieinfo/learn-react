@@ -1,3 +1,4 @@
+/* Responsabilité : centraliser les Query Keys pour garantir un cache cohérent. */
 export const postsKeys = {
   all: ['posts'],
   lists: () => [...postsKeys.all, 'list'],

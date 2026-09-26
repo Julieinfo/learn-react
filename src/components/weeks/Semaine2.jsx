@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices d'effets et de data fetching initial. */
 import React from 'react';
 import RechercheProduits from '../RechercheProduits';
 

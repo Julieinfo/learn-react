@@ -1,3 +1,4 @@
+/* Responsabilité : fournir une sélection réutilisable aux Compound Components. */
 import { useState, useCallback } from 'react';
 
 /**
@@ -7,6 +8,7 @@ import { useState, useCallback } from 'react';
 export function useCompoundSelect(defaultValue = null, allowToggle = false) {
   const [selectedId, setSelectedId] = useState(defaultValue);
 
+  // La fonction stable peut être transmise aux sous-composants sans invalider leur mémoïsation.
   const select = useCallback((id) => {
     setSelectedId((prev) => {
       if (allowToggle && prev === id) {

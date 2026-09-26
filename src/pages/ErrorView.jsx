@@ -1,3 +1,4 @@
+/* Responsabilité : présenter les erreurs remontées par les loaders de la PerfApp. */
 import React from 'react';
 import { Link, useRouteError } from 'react-router-dom';
 

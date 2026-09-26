@@ -1,3 +1,4 @@
+/* Responsabilité : rechercher des produits et gérer le cycle de vie d'une requête. */
 import React, { useState, useEffect } from 'react';
 import useDebounce from '../hooks/useDebounce';
 import Conteneur from './Conteneur';

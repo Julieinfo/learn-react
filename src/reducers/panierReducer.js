@@ -1,3 +1,8 @@
+/*
+ * Responsabilité : définir les transitions métier du panier.
+ * Le reducer est une fonction pure déterministe S x A -> S' ; chaque cas
+ * retourne un nouvel état et ne modifie jamais la référence précédente.
+ */
 export const PRODUITS_INITIAUX = [
     { id: 1, nom: 'Casque Audio', description: 'Casque réducteur de bruit', prix: 150, quantite: 0 },
     { id: 2, nom: 'Souris Gamer', description: 'Souris optique sans fil', prix: 50, quantite: 0 },

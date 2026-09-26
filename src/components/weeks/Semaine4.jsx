@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices de reducers et de transitions d'état. */
 import React from 'react';
 import TodoApp from '../TodoApp';
 import GestionProduits from '../GestionProduits';

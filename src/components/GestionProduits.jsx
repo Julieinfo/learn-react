@@ -1,3 +1,4 @@
+/* Responsabilité : gérer localement un CRUD produit et illustrer la mémoïsation. */
 import React, { useState, useMemo, useCallback } from 'react';
 
 // Composant enfant optimisé avec React.memo
@@ -19,7 +20,7 @@ export default function GestionProduits() {
   const [recherche, setRecherche] = useState('');
   const [compteur, setCompteur] = useState(0);
 
-  // 1. USEMEMO : Mémorise le filtrage et le calcul du total
+  // useMemo évite de recalculer les données dérivées sans changement pertinent.
   const produitsFiltresEtTotal = useMemo(() => {
     console.log('[Calcul] Filtrage des produits...');
     const filtres = produits.filter((p) =>
@@ -29,7 +30,7 @@ export default function GestionProduits() {
     return { filtres, total };
   }, [produits, recherche]);
 
-  // 2. USECALLBACK : Mémorise l'instance de la fonction
+  // useCallback stabilise la référence transmise aux composants enfants.
   const incrementer = useCallback(() => {
     setCompteur((c) => c + 1);
   }, []);

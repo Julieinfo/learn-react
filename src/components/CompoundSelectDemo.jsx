@@ -1,3 +1,4 @@
+/* Responsabilité : démontrer l'utilisation d'un Custom Hook de sélection. */
 import React from 'react';
 import { useCompoundSelect } from '../hooks/useCompoundSelect';
 

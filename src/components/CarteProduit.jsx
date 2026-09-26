@@ -1,3 +1,4 @@
+/* Responsabilité : présenter un produit et déléguer ses mutations au parent. */
 import React, { useState, memo } from 'react';
 import Conteneur from './Conteneur';
 

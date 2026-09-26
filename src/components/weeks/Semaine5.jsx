@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices de profiling et d'optimisation. */
 import React from 'react';
 import CompteurProfiler from '../CompteurProfiler';
 import DashboardS5 from '../ProjetIntegrateurS5';

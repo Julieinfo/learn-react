@@ -1,6 +1,8 @@
+/* Responsabilité : afficher le catalogue du Mini-Shop à partir de données préchargées. */
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
+// Le loader déclare la dépendance réseau au niveau de la route, avant le rendu.
 export const productsLoader = async () => {
   const response = await fetch('https://dummyjson.com/products?limit=8');
 

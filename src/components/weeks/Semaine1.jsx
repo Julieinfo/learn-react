@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices de fondation et le panier contrôlé. */
 import React from 'react';
 import CarteProduit from '../CarteProduit';
 import Conteneur from '../Conteneur';

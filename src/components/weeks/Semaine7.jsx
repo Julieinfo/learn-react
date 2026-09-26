@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices de gestion d'état serveur. */
 import React from 'react';
 import ReactQueryDemo from '../ReactQueryDemo';
 import UserListMiniProject from '../UserListMiniProject';

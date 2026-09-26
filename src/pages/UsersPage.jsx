@@ -1,6 +1,8 @@
+/* Responsabilité : afficher la liste chargée par route et accueillir la sous-route détail. */
 import React from 'react';
 import { Link, Outlet, useLoaderData } from 'react-router-dom';
 
+// Le loader sépare l'accès réseau du rendu et garantit des données prêtes à afficher.
 export const usersLoader = async () => {
   const response = await fetch(
     'https://jsonplaceholder.typicode.com/users?_limit=4'

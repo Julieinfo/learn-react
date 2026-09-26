@@ -1,3 +1,4 @@
+/* Responsabilité : démontrer fetching, retry, erreurs simulées et refetch manuel. */
 import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 

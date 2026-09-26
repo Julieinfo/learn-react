@@ -1,3 +1,4 @@
+/* Responsabilité : présenter une Todo App pilotée par reducer et historique UNDO. */
 import React, { useReducer, useEffect, useMemo, useState } from 'react';
 import { todoReducer, initialTodoState, TODO_ACTIONS } from '../reducers/todoReducer';
 

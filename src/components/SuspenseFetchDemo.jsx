@@ -1,3 +1,4 @@
+/* Responsabilité : coordonner Suspense, query asynchrone et Error Boundary. */
 import React, { Suspense, useState } from 'react';
 import { useQueryClient, useSuspenseQuery } from '@tanstack/react-query';
 import { ErrorBoundary } from './ErrorBoundary';

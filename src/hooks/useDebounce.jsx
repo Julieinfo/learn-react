@@ -12,6 +12,7 @@
  * changement immédiatement, mais seulement après un délai donné.
  */
 
+/* Responsabilité : retarder une valeur instable afin de limiter les effets coûteux. */
 import { useState, useEffect } from 'react';
 
 // Note d'apprentissage : useState permet de gérer un état local au hook.

@@ -1,3 +1,4 @@
+/* Responsabilité : regrouper les exercices de composition avancée. */
 import React from 'react';
 import { Accordion } from '../Accordion';
 import { Tabs } from '../Tabs';

@@ -1,3 +1,7 @@
+/*
+ * Responsabilité : appliquer les transitions immuables de la Todo App.
+ * L'historique past/present permet l'UNDO sans effet de bord dans le reducer.
+ */
 export const TODO_ACTIONS = {
   ADD_TODO: 'ADD_TODO',
   TOGGLE_TODO: 'TOGGLE_TODO',

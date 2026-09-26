@@ -1,3 +1,8 @@
+/*
+ * Responsabilité unique : exposer l'état global du panier et ses commandes.
+ * Le Provider isole la persistance et mémorise sa valeur pour limiter les
+ * re-rendus déclenchés par la comparaison superficielle du Context.
+ */
 import React, { createContext, useReducer, useEffect, useContext, useCallback, useMemo } from 'react';
 import { panierReducer, PRODUITS_INITIAUX } from '../reducers/panierReducer';
 
@@ -21,7 +26,7 @@ export function CartProvider({ children }) {
     localStorage.setItem('app-cart', JSON.stringify(state.produits));
   }, [state.produits]);
 
-  // 🟢 Handlers stables stabilisés avec useCallback
+  // Les callbacks stables préservent l'égalité référentielle pour les enfants mémoïsés.
   const ajouterQuantite = useCallback((id) => dispatch({ type: 'AJOUTER_QUANTITE', payload: id }), []);
   const diminuerQuantite = useCallback((id) => dispatch({ type: 'DIMINUER_QUANTITE', payload: id }), []);
   const supprimerArticle = useCallback((id) => dispatch({ type: 'SUPPRIMER_ARTICLE', payload: id }), []);
@@ -30,7 +35,7 @@ export function CartProvider({ children }) {
   const ajouterNouveauProduit = useCallback((produit) => dispatch({ type: 'AJOUTER_NOUVEAU_PRODUIT', payload: produit }), []);
   const appliquerPromo = useCallback((taux) => dispatch({ type: 'APPLIQUER_PROMO', payload: taux }), []);
 
-  // Données dérivées mémorisées avec useMemo
+  // Les valeurs dérivées sont calculées depuis l'état minimal du panier.
   const produitsFiltres = useMemo(() => {
     return state.produits.filter((p) =>
       state.filtreActif === 'PANIER' ? p.quantite > 0 : true
@@ -46,7 +51,7 @@ export function CartProvider({ children }) {
     return state.produits.filter((p) => p.quantite > 0).length;
   }, [state.produits]);
 
-  // 🟢 Mémorisation globale de la valeur du context
+  // La valeur stable évite de notifier tous les consommateurs sans changement utile.
   const contextValue = useMemo(() => ({
     produits: state.produits,
     produitsFiltres,
@@ -87,6 +92,8 @@ export function CartProvider({ children }) {
 
 export function useCart() {
   const context = useContext(CartContext);
+  // Ce garde-fou détecte immédiatement un usage hors du Provider au lieu de
+  // laisser une erreur de propriété apparaître plus loin dans l'arbre.
   if (!context) {
     throw new Error("useCart doit être utilisé à l'intérieur d'un CartProvider");
   }

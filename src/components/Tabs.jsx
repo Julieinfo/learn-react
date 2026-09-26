@@ -1,3 +1,4 @@
+/* Responsabilité : fournir des onglets composables avec navigation accessible. */
 import React, { useState, createContext, useContext } from 'react';
 
 // Contexte partagé pour le composant Tabs

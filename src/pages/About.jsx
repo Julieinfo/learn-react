@@ -1,3 +1,4 @@
+/* Responsabilité : afficher les informations statiques du projet. */
 import React from 'react';
 
 export default function About() {

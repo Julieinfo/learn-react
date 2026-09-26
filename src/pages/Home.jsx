@@ -1,3 +1,4 @@
+/* Responsabilité : présenter l'entrée du Mini-Shop et orienter vers le catalogue. */
 import React from 'react';
 import { Link } from 'react-router-dom';
 

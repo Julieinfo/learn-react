@@ -1,6 +1,8 @@
+/* Responsabilité : afficher une fiche produit résolue par le paramètre de route. */
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
+// Une ressource absente devient une erreur de route exploitable par le fallback.
 export const productDetailLoader = async ({ params }) => {
   const response = await fetch(`https://dummyjson.com/products/${params.id}`);
 

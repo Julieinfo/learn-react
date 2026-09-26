@@ -1,6 +1,8 @@
+/* Responsabilité : afficher le détail d'un produit dans la PerfApp S8. */
 import React from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
 
+// La route valide l'identifiant avant de rendre une fiche produit.
 export const productViewLoader = async ({ params }) => {
   const response = await fetch(`https://dummyjson.com/products/${params.id}`);
 

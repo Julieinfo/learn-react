@@ -1,3 +1,4 @@
+/* Responsabilité : fournir la navigation commune et le point d'insertion Outlet. */
 import React from 'react';
 import { NavLink, Outlet, useNavigation } from 'react-router-dom';
 

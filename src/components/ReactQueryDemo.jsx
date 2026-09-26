@@ -1,3 +1,4 @@
+/* Responsabilité : démontrer query, cache, staleTime et invalidation manuelle. */
 import React from 'react';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 

@@ -1,3 +1,4 @@
+/* Responsabilité : implémenter un Compound Component d'accordéon à état partagé. */
 import React, { useState, createContext, useContext } from 'react';
 
 // Contexte interne : il partage l'élément ouvert entre les sous-composants.
