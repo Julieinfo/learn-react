@@ -18,6 +18,7 @@ export default function Semaine1({
 }) {
   return (
     <div className="week-grid">
+      <p className="week-days">Jours traités : lundi, mardi, mercredi et samedi.</p>
       <section className="week-card">
         <h2>🔒 Inscription & Validation du Mot de Passe</h2>
         <FormulaireInscription />

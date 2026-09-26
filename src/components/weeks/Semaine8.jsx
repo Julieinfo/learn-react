@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 export default function Semaine8() {
   return (
     <div className="week-grid">
+      <p className="week-days">Jours traités : lundi, mardi, mercredi et samedi.</p>
       <section className="week-card">
         <h2>🚦 Semaine 8 : Routing</h2>
         <h3>1. React Router : routes imbriquées et loaders (Lundi)</h3>

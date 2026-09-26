@@ -8,6 +8,7 @@ export default function Semaine6() {
   return (
     <div style={{ padding: '20px', fontFamily: 'sans-serif' }}>
       <h2>🧩 Semaine 6 : Composition Avancée</h2>
+      <p className="week-days">Jours traités : lundi, mardi, mercredi et samedi.</p>
 
       {/* Lundi */}
       <section style={{ marginBottom: '30px' }}>

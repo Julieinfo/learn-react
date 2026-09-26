@@ -4,7 +4,9 @@ import Conteneur from '../Conteneur';
 
 export default function Semaine3() {
   return (
-    <section className="week-card">
+    <div className="week-grid">
+      <p className="week-days">Jours traités : lundi, mardi, mercredi et samedi.</p>
+      <section className="week-card">
       <h2>🎨 Semaine 3 : Context API & thème</h2>
       <Conteneur>
         <p>
@@ -13,6 +15,7 @@ export default function Semaine3() {
         </p>
         <BoutonTheme />
       </Conteneur>
-    </section>
+      </section>
+    </div>
   );
 }

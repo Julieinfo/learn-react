@@ -7,6 +7,7 @@ import IntegratorProjectS7 from '../IntegratorProjectS7';
 export default function Semaine7() {
   return (
     <div className="week-grid">
+      <p className="week-days">Jours traités : lundi, mardi, mercredi et samedi.</p>
       <section className="week-card">
         <h2>🌐 Semaine 7 : Data Fetching</h2>
         <h3>1. React Query : queries, cache et invalidation (Lundi)</h3>
