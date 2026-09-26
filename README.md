@@ -250,6 +250,7 @@ learn-react/
 - [x] **Semaine 8 - Lundi** : React Router (routes imbriquées, `Outlet`, loaders et `useLoaderData`)
 - [x] **Semaine 8 - Mardi** : Mini-projet application multi-pages (catalogue, détails, navigation, loaders et page 404)
 - [x] **Semaine 8 - Mercredi** : Code splitting par route avec `lazy()` et `Suspense`
+- [x] **Semaine 8 - Samedi** : Projet intégrateur PerfApp (fetching réel, code splitting et profiling)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -287,6 +288,11 @@ learn-react/
 - Chargement différé des pages Produits et Détail produit avec `React.lazy()`.
 - Affichage d'un fallback `Suspense` pendant le téléchargement des chunks JavaScript.
 - Chargement dynamique des loaders associés pour réduire le bundle initial.
+
+## 📌 Semaine 8 — Jour 6 (Samedi) : Projet Intégrateur S8
+- Assemblage d'une application e-commerce multi-pages avec fetching réel et gestion des erreurs.
+- Catalogue filtrable avec `useMemo`, loaders React Router et code splitting par route.
+- Mesure des performances de rendu avec `React.Profiler`.
 
 ---
 

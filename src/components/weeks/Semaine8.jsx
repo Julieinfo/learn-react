@@ -24,6 +24,16 @@ export default function Semaine8() {
         </p>
         <Link to="/products">Ouvrir le Mini-Shop →</Link>
       </section>
+
+      <section className="week-card">
+        <h2>⚡ Projet intégrateur S8</h2>
+        <h3>3. App multi-pages, fetching réel et performance (Samedi)</h3>
+        <p>
+          Catalogue réel filtrable, code splitting par route et mesure des
+          rendus avec <code>Profiler</code>.
+        </p>
+        <Link to="/perf-shop">Ouvrir la PerfApp S8 →</Link>
+      </section>
     </div>
   );
 }

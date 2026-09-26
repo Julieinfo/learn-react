@@ -37,11 +37,21 @@ import UserDetail, { userDetailLoader } from './pages/UserDetail';
 import Home from './pages/Home';
 import About from './pages/About';
 import NotFound from './pages/NotFound';
+import AppLayout from './layouts/AppLayout';
+import ErrorView from './pages/ErrorView';
 
 const Products = lazy(() => import('./pages/Products'));
 const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+const Catalog = lazy(() => import('./pages/Catalog'));
+const ProductView = lazy(() => import('./pages/ProductView'));
 
 const PageLoader = () => <p role="status">🌀 Téléchargement du module de la page...</p>;
+const PerfHome = () => (
+  <section>
+    <h2>Bienvenue sur le Projet Intégrateur S8</h2>
+    <p>Application de démonstration alliant React Router, Data Loaders, Code-Splitting et Profiling.</p>
+  </section>
+);
 
 const queryClient = new QueryClient();
 
@@ -437,6 +447,35 @@ const router = createBrowserRouter([
       {
         path: '*',
         element: <NotFound />
+      },
+      {
+        path: 'perf-shop',
+        element: <AppLayout />,
+        errorElement: <ErrorView />,
+        children: [
+          { index: true, element: <PerfHome /> },
+          {
+            path: 'products',
+            element: (
+              <Suspense fallback={<PageLoader />}>
+                <Catalog />
+              </Suspense>
+            ),
+            loader: (args) =>
+              import('./pages/Catalog').then((module) => module.catalogLoader(args))
+          },
+          {
+            path: 'products/:id',
+            element: (
+              <Suspense fallback={<PageLoader />}>
+                <ProductView />
+              </Suspense>
+            ),
+            loader: (args) =>
+              import('./pages/ProductView').then((module) => module.productViewLoader(args))
+          },
+          { path: '*', element: <ErrorView /> }
+        ]
       }
     ]
   }
