@@ -36,61 +36,61 @@ Projet d'apprentissage React construit progressivement autour d'un panier, d'exe
 
 Chaque semaine suit le même format. Les modules conservés sont limités aux quatre journées du programme : lundi, mardi, mercredi et samedi.
 
-### Semaine 1 — Fondamentaux et état local
+### Semaine 1 - Fondamentaux et état local
 
-- [x] **Lundi** — Props, state, composition et prop `children` avec `Conteneur`.
-- [x] **Mardi** — État local et indépendance des cartes produit avec `CarteProduit`.
-- [x] **Mercredi** — Listes filtrées, rendu conditionnel et filtres du panier dans `Semaine1`.
-- [x] **Samedi** — Mise en pratique dans le panier : quantités, promotion et total calculé.
+- [x] **Lundi** - Props, state, composition et prop `children` avec `Conteneur`.
+- [x] **Mardi** - État local et indépendance des cartes produit avec `CarteProduit`.
+- [x] **Mercredi** - Listes filtrées, rendu conditionnel et filtres du panier dans `Semaine1`.
+- [x] **Samedi** - Mise en pratique dans le panier : quantités, promotion et total calculé.
 
-### Semaine 2 — Effets et appels API
+### Semaine 2 - Effets et appels API
 
-- [x] **Lundi** — Cycle de vie, `useEffect` et nettoyage dans `RechercheProduits`.
-- [x] **Mardi** — `fetch`, `AbortController` et prévention des courses réseau.
-- [x] **Mercredi** — Validation de formulaire et debounce avec `useDebounce`.
-- [x] **Samedi** — Recherche de produits avec états initial, chargement, succès et erreur.
+- [x] **Lundi** - Cycle de vie, `useEffect` et nettoyage dans `RechercheProduits`.
+- [x] **Mardi** - `fetch`, `AbortController` et prévention des courses réseau.
+- [x] **Mercredi** - Validation de formulaire et debounce avec `useDebounce`.
+- [x] **Samedi** - Recherche de produits avec états initial, chargement, succès et erreur.
 
-### Semaine 3 — Context API
+### Semaine 3 - Context API
 
-- [x] **Lundi** — Provider, Consumer et hook de contexte avec `ThemeContext`.
-- [x] **Mardi** — Thème clair/sombre et persistance avec `localStorage`.
-- [x] **Mercredi** — Séparation logique/UI avec `CartContext` et `useCart`.
-- [x] **Samedi** — Composition des contextes thème et panier dans `main.jsx`.
+- [x] **Lundi** - Provider, Consumer et hook de contexte avec `ThemeContext`.
+- [x] **Mardi** - Thème clair/sombre et persistance avec `localStorage`.
+- [x] **Mercredi** - Séparation logique/UI avec `CartContext` et `useCart`.
+- [x] **Samedi** - Composition des contextes thème et panier dans `main.jsx`.
 
-### Semaine 4 — Reducers et transitions d'état
+### Semaine 4 - Reducers et transitions d'état
 
-- [x] **Lundi** — Reducer pur, actions et dispatch avec `panierReducer`.
-- [x] **Mardi** — Panier complet, persistance et séparation des effets dans `CartContext`.
-- [x] **Mercredi** — Todo App, historique `past/present` et calculs dérivés.
-- [x] **Samedi** — Gestion CRUD avec `GestionProduits` et `todoReducer`.
+- [x] **Lundi** - Reducer pur, actions et dispatch avec `panierReducer`.
+- [x] **Mardi** - Panier complet, persistance et séparation des effets dans `CartContext`.
+- [x] **Mercredi** - Todo App, historique `past/present` et calculs dérivés.
+- [x] **Samedi** - Gestion CRUD avec `GestionProduits` et `todoReducer`.
 
-### Semaine 5 — Performance React
+### Semaine 5 - Performance React
 
-- [x] **Lundi** — Choix raisonné entre `useMemo` et `useCallback`.
-- [x] **Mardi** — Mesure du rendu avec `CompteurProfiler` et l'API `Profiler`.
-- [x] **Mercredi** — Optimisation du dashboard avec calculs et callbacks mémorisés.
-- [x] **Samedi** — Projet pratique dans `ProjetIntegrateurS5`.
+- [x] **Lundi** - Choix raisonné entre `useMemo` et `useCallback`.
+- [x] **Mardi** - Mesure du rendu avec `CompteurProfiler` et l'API `Profiler`.
+- [x] **Mercredi** - Optimisation du dashboard avec calculs et callbacks mémorisés.
+- [x] **Samedi** - Projet pratique dans `ProjetIntegrateurS5`.
 
-### Semaine 6 — Composition avancée
+### Semaine 6 - Composition avancée
 
-- [x] **Lundi** — Compound Component `Accordion` et contexte interne.
-- [x] **Mardi** — Compound Component `Tabs` avec navigation accessible.
-- [x] **Mercredi** — Hook `useCompoundSelect` et sélection avec toggle.
-- [x] **Samedi** — Projet intégrateur S6 avec `FormModal` et formulaire contrôlé.
+- [x] **Lundi** - Compound Component `Accordion` et contexte interne.
+- [x] **Mardi** - Compound Component `Tabs` avec navigation accessible.
+- [x] **Mercredi** - Hook `useCompoundSelect` et sélection avec toggle.
+- [x] **Samedi** - Projet intégrateur S6 avec `FormModal` et formulaire contrôlé.
 
-### Semaine 7 — Data Fetching
+### Semaine 7 - Data Fetching
 
-- [x] **Lundi** — `useQuery`, cache, fraîcheur et invalidation avec `ReactQueryDemo`.
-- [x] **Mardi** — Liste utilisateurs, états de chargement, erreurs, retry et refetch.
-- [x] **Mercredi** — `useSuspenseQuery`, `Suspense` et `ErrorBoundary`.
-- [x] **Samedi** — Projet intégrateur posts avec mutations et Query Key Factory.
+- [x] **Lundi** - `useQuery`, cache, fraîcheur et invalidation avec `ReactQueryDemo`.
+- [x] **Mardi** - Liste utilisateurs, états de chargement, erreurs, retry et refetch.
+- [x] **Mercredi** - `useSuspenseQuery`, `Suspense` et `ErrorBoundary`.
+- [x] **Samedi** - Projet intégrateur posts avec mutations et Query Key Factory.
 
-### Semaine 8 — Routing et code splitting
+### Semaine 8 - Routing et code splitting
 
-- [x] **Lundi** — `createBrowserRouter`, `Outlet`, loaders et `useLoaderData`.
-- [x] **Mardi** — Mini-Shop multi-pages : accueil, catalogue, détails, à propos et erreur.
-- [x] **Mercredi** — `lazy()`, `Suspense` et loaders importés dynamiquement.
-- [x] **Samedi** — PerfApp S8 : fetching réel, filtrage par `useMemo` et profiling.
+- [x] **Lundi** - `createBrowserRouter`, `Outlet`, loaders et `useLoaderData`.
+- [x] **Mardi** - Mini-Shop multi-pages : accueil, catalogue, détails, à propos et erreur.
+- [x] **Mercredi** - `lazy()`, `Suspense` et loaders importés dynamiquement.
+- [x] **Samedi** - PerfApp S8 : fetching réel, filtrage par `useMemo` et profiling.
 
 ## Concepts d'ingénierie React
 
@@ -219,3 +219,7 @@ npm run build
 ## Documentation technique
 
 La fiche [Avertissements CSS et erreurs de Source Maps](docs/fiche-analyse-avertissements-react-vite.md) décrit le diagnostic des préfixes CSS propriétaires, des fichiers `.map` et des différences entre développement et production.
+
+## 👩‍💻 Auteure
+
+**Julie De Castro** - [GitHub](https://github.com/Julieinfo) · [Portfolio](#)
