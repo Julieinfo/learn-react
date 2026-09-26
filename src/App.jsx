@@ -12,7 +12,7 @@ import Conteneur from './components/Conteneur';
 import { useTheme } from './context/ThemeContext';
 import BoutonTheme from './components/BoutonTheme';
 import { useCart } from './context/CartContext';
-import { useState } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import TodoApp from './components/TodoApp';
 import GestionProduits from './components/GestionProduits';
 import CompteurProfiler from './components/CompteurProfiler';
@@ -36,9 +36,12 @@ import UsersPage, { usersLoader } from './pages/UsersPage';
 import UserDetail, { userDetailLoader } from './pages/UserDetail';
 import Home from './pages/Home';
 import About from './pages/About';
-import Products, { productsLoader } from './pages/Products';
-import ProductDetail, { productDetailLoader } from './pages/ProductDetail';
 import NotFound from './pages/NotFound';
+
+const Products = lazy(() => import('./pages/Products'));
+const ProductDetail = lazy(() => import('./pages/ProductDetail'));
+
+const PageLoader = () => <p role="status">🌀 Téléchargement du module de la page...</p>;
 
 const queryClient = new QueryClient();
 
@@ -401,13 +404,23 @@ const router = createBrowserRouter([
       },
       {
         path: 'products',
-        element: <Products />,
-        loader: productsLoader
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <Products />
+          </Suspense>
+        ),
+        loader: (args) =>
+          import('./pages/Products').then((module) => module.productsLoader(args))
       },
       {
         path: 'products/:id',
-        element: <ProductDetail />,
-        loader: productDetailLoader
+        element: (
+          <Suspense fallback={<PageLoader />}>
+            <ProductDetail />
+          </Suspense>
+        ),
+        loader: (args) =>
+          import('./pages/ProductDetail').then((module) => module.productDetailLoader(args))
       },
       {
         path: 'users',

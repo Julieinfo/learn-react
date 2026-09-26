@@ -249,6 +249,7 @@ learn-react/
 - [x] **Semaine 7 - Samedi** : Projet intégrateur avec `useQuery`, `useMutation`, invalidation et Query Key Factory
 - [x] **Semaine 8 - Lundi** : React Router (routes imbriquées, `Outlet`, loaders et `useLoaderData`)
 - [x] **Semaine 8 - Mardi** : Mini-projet application multi-pages (catalogue, détails, navigation, loaders et page 404)
+- [x] **Semaine 8 - Mercredi** : Code splitting par route avec `lazy()` et `Suspense`
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -281,6 +282,11 @@ learn-react/
 - Création des pages Accueil, Produits, Détail produit et À propos.
 - Ajout de loaders pour le catalogue et les fiches produits avec chargement global lors des transitions.
 - Gestion des erreurs de route avec une page 404 et conservation du parcours pédagogique sur `/learning`.
+
+## 📌 Semaine 8 — Jour 3 (Mercredi) : `lazy()` + `Suspense` sur les routes
+- Chargement différé des pages Produits et Détail produit avec `React.lazy()`.
+- Affichage d'un fallback `Suspense` pendant le téléchargement des chunks JavaScript.
+- Chargement dynamique des loaders associés pour réduire le bundle initial.
 
 ---
 
