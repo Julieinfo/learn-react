@@ -1,15 +1,28 @@
 import React from 'react';
-import { Link, Outlet } from 'react-router-dom';
+import { NavLink, Outlet, useNavigation } from 'react-router-dom';
 
 export default function RootLayout() {
+  const navigation = useNavigation();
+  const isLoading = navigation.state === 'loading';
+
+  const linkStyle = ({ isActive }) => ({
+    fontWeight: isActive ? 'bold' : 'normal',
+    color: isActive ? '#007bff' : '#333',
+    marginRight: '16px'
+  });
+
   return (
     <div>
       <header>
-        <h1>🚦 React Router : Routes imbriquées &amp; Loaders</h1>
+        <h1>🛍️ Mini-Shop Multi-pages</h1>
         <nav aria-label="Navigation principale">
-          <Link to="/">Accueil</Link>{' '}
-          <Link to="/users">Utilisateurs (Nested)</Link>
+          <NavLink to="/" style={linkStyle}>Accueil</NavLink>
+          <NavLink to="/products" style={linkStyle}>Produits</NavLink>
+          <NavLink to="/about" style={linkStyle}>À propos</NavLink>
+          <NavLink to="/users" style={linkStyle}>Utilisateurs</NavLink>
+          <NavLink to="/learning" style={linkStyle}>Parcours</NavLink>
         </nav>
+        {isLoading && <p role="status">⏳ Chargement en cours...</p>}
       </header>
       <main>
         <Outlet />

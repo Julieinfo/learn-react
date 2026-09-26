@@ -9,7 +9,7 @@ export function Tabs({ children, defaultTab }) {
 
   return (
     <TabsContext.Provider value={{ activeTab, setActiveTab }}>
-      <div style={{ maxWidth: '500px', margin: '20px auto', border: '1px solid #ddd', borderRadius: '8px', overflow: 'hidden' }}>
+      <div style={{ width: '100%', margin: '20px auto', border: '1px solid #ddd', borderRadius: '8px', overflow: 'visible' }}>
         {children}
       </div>
     </TabsContext.Provider>
@@ -19,7 +19,7 @@ export function Tabs({ children, defaultTab }) {
 // 2. Conteneur des Boutons d'Onglets
 function TabList({ children }) {
   return (
-    <div style={{ display: 'flex', borderBottom: '1px solid #ddd', backgroundColor: '#f8f9fa' }}>
+    <div role="tablist" style={{ display: 'flex', overflowX: 'auto', borderBottom: '1px solid #ddd', backgroundColor: '#f8f9fa' }}>
       {children}
     </div>
   );
@@ -32,9 +32,11 @@ function Tab({ id, children }) {
 
   return (
     <button
+      role="tab"
+      aria-selected={isActive}
       onClick={() => setActiveTab(id)}
       style={{
-        flex: 1,
+        flex: '0 0 110px',
         padding: '12px 16px',
         border: 'none',
         backgroundColor: isActive ? '#ffffff' : 'transparent',

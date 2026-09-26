@@ -248,6 +248,7 @@ learn-react/
 - [x] **Semaine 7 - Mercredi** : Suspense et Error Boundary (fallback de chargement et récupération après erreur)
 - [x] **Semaine 7 - Samedi** : Projet intégrateur avec `useQuery`, `useMutation`, invalidation et Query Key Factory
 - [x] **Semaine 8 - Lundi** : React Router (routes imbriquées, `Outlet`, loaders et `useLoaderData`)
+- [x] **Semaine 8 - Mardi** : Mini-projet application multi-pages (catalogue, détails, navigation, loaders et page 404)
 
 > 🔄 Cette liste sera mise à jour à chaque nouveau module de cours.
 
@@ -275,6 +276,11 @@ learn-react/
 - Configuration de `createBrowserRouter` et `RouterProvider`.
 - Utilisation de `Outlet` pour afficher les routes enfants dans une mise en page commune.
 - Chargement déclaratif des utilisateurs et de leurs détails avec `loader` et `useLoaderData`.
+
+## 📌 Semaine 8 — Jour 2 (Mardi) : Mini-projet Application Multi-pages
+- Création des pages Accueil, Produits, Détail produit et À propos.
+- Ajout de loaders pour le catalogue et les fiches produits avec chargement global lors des transitions.
+- Gestion des erreurs de route avec une page 404 et conservation du parcours pédagogique sur `/learning`.
 
 ---
 

@@ -26,6 +26,7 @@ import Semaine4 from './components/weeks/Semaine4';
 import Semaine5 from './components/weeks/Semaine5';
 import Semaine6 from './components/weeks/Semaine6';
 import Semaine7 from './components/weeks/Semaine7';
+import Semaine8 from './components/weeks/Semaine8';
 import CompoundSelectDemo from './components/CompoundSelectDemo';
 import ProjetIntegrateurS6 from './components/ProjetIntegrateurS6';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
@@ -33,6 +34,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import RootLayout from './layouts/RootLayout';
 import UsersPage, { usersLoader } from './pages/UsersPage';
 import UserDetail, { userDetailLoader } from './pages/UserDetail';
+import Home from './pages/Home';
+import About from './pages/About';
+import Products, { productsLoader } from './pages/Products';
+import ProductDetail, { productDetailLoader } from './pages/ProductDetail';
+import NotFound from './pages/NotFound';
 
 const queryClient = new QueryClient();
 
@@ -122,6 +128,7 @@ function LearningHome() {
             <Tabs.Tab id="week-5">Semaine 5</Tabs.Tab>
             <Tabs.Tab id="week-6">Semaine 6</Tabs.Tab>
             <Tabs.Tab id="week-7">Semaine 7</Tabs.Tab>
+            <Tabs.Tab id="week-8">Semaine 8</Tabs.Tab>
           </Tabs.List>
           <Tabs.Panels>
             <Tabs.Panel id="week-1"><Semaine1 {...weekOneProps} /></Tabs.Panel>
@@ -131,6 +138,7 @@ function LearningHome() {
             <Tabs.Panel id="week-5"><Semaine5 /></Tabs.Panel>
             <Tabs.Panel id="week-6"><Semaine6 /></Tabs.Panel>
             <Tabs.Panel id="week-7"><Semaine7 /></Tabs.Panel>
+            <Tabs.Panel id="week-8"><Semaine8 /></Tabs.Panel>
           </Tabs.Panels>
         </Tabs>
       </section>
@@ -377,10 +385,29 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <RootLayout />,
+    errorElement: <NotFound />,
     children: [
       {
         index: true,
+        element: <Home />
+      },
+      {
+        path: 'learning',
         element: <LearningHome />
+      },
+      {
+        path: 'about',
+        element: <About />
+      },
+      {
+        path: 'products',
+        element: <Products />,
+        loader: productsLoader
+      },
+      {
+        path: 'products/:id',
+        element: <ProductDetail />,
+        loader: productDetailLoader
       },
       {
         path: 'users',
@@ -393,6 +420,10 @@ const router = createBrowserRouter([
             loader: userDetailLoader
           }
         ]
+      },
+      {
+        path: '*',
+        element: <NotFound />
       }
     ]
   }
